@@ -1,0 +1,195 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SI-{YYYY}-{MM}-{lead}",
+ "creation": "2025-06-20 12:28:58.638435",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_uqev",
+  "amended_from",
+  "inspection_id",
+  "lead",
+  "customer_name",
+  "column_break_eqjh",
+  "inspection_date",
+  "inspection_time",
+  "property_details_section",
+  "property_address",
+  "property_type",
+  "site_measurements_section",
+  "site_dimensions",
+  "documentation_section",
+  "site_photos",
+  "measurement_sketch",
+  "inspection_notes",
+  "status_and_follow_up_section",
+  "inspection_status",
+  "column_break_bnvi",
+  "follow_up_required",
+  "next_action"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_uqev",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "SiteInspection",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "default": "SI-.####",
+   "fieldname": "inspection_id",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Inspection ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "lead",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Lead",
+   "options": "Lead",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "lead.last_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_eqjh",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "inspection_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Inspection Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "inspection_time",
+   "fieldtype": "Time",
+   "label": "Inspection Time",
+   "reqd": 1
+  },
+  {
+   "fieldname": "property_details_section",
+   "fieldtype": "Section Break",
+   "label": "Property Details"
+  },
+  {
+   "fetch_from": "lead.custom_property_area",
+   "fieldname": "property_address",
+   "fieldtype": "Text",
+   "label": "Property Address"
+  },
+  {
+   "fetch_from": "lead.custom_property_type",
+   "fieldname": "property_type",
+   "fieldtype": "Select",
+   "label": "Property Type"
+  },
+  {
+   "fieldname": "site_measurements_section",
+   "fieldtype": "Section Break",
+   "label": "Site Measurements"
+  },
+  {
+   "fieldname": "site_dimensions",
+   "fieldtype": "Table",
+   "label": "Site Dimensions",
+   "options": "SiteDimension"
+  },
+  {
+   "fieldname": "documentation_section",
+   "fieldtype": "Section Break",
+   "label": "Documentation"
+  },
+  {
+   "fieldname": "site_photos",
+   "fieldtype": "Attach",
+   "label": "Site Photos"
+  },
+  {
+   "fieldname": "measurement_sketch",
+   "fieldtype": "Attach",
+   "label": " Measurement Sketch"
+  },
+  {
+   "fieldname": "inspection_notes",
+   "fieldtype": "Text Editor",
+   "label": "Inspection Notes"
+  },
+  {
+   "fieldname": "status_and_follow_up_section",
+   "fieldtype": "Section Break",
+   "label": "Status and Follow up"
+  },
+  {
+   "default": "Scheduled",
+   "fieldname": "inspection_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Inspection Status",
+   "options": "Scheduled\nIn Progress\nCompleted\nRescheduled\nCancelled"
+  },
+  {
+   "fieldname": "column_break_bnvi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow up Required"
+  },
+  {
+   "fieldname": "next_action",
+   "fieldtype": "Text",
+   "label": "Next Action"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-06-20 12:54:16.574827",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "SiteInspection",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

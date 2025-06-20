@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-06-20 12:42:21.279217",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "area_name",
+  "dimensionsunits",
+  "media"
+ ],
+ "fields": [
+  {
+   "fieldname": "area_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Area Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dimensionsunits",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dimensions(units)",
+   "reqd": 1
+  },
+  {
+   "fieldname": "media",
+   "fieldtype": "Attach",
+   "in_list_view": 1,
+   "label": "Media"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-06-20 12:49:21.729656",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "SiteDimension",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
