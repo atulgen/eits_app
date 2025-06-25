@@ -6,6 +6,9 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "floor",
+  "room",
+  "entity",
   "area_name",
   "dimensionsunits",
   "media"
@@ -30,13 +33,34 @@
    "fieldtype": "Attach",
    "in_list_view": 1,
    "label": "Media"
+  },
+  {
+   "fieldname": "floor",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Floor",
+   "options": "Floor"
+  },
+  {
+   "fieldname": "room",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Room",
+   "options": "Room"
+  },
+  {
+   "fieldname": "entity",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Entity",
+   "options": "Entity"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-06-20 12:49:21.729656",
+ "modified": "2025-06-25 10:44:27.846987",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "SiteDimension",
