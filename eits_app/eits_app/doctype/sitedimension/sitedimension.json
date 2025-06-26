@@ -7,13 +7,15 @@
  "engine": "InnoDB",
  "field_order": [
   "floor",
-  "room",
-  "entity",
   "area_name",
-  "dimensionsunits",
-  "media",
   "remarks",
-  "table_tdhy"
+  "column_break_rrlm",
+  "room",
+  "dimensionsunits",
+  "table_tdhy",
+  "column_break_xcqh",
+  "entity",
+  "media"
  ],
  "fields": [
   {
@@ -67,13 +69,21 @@
    "fieldtype": "Table",
    "label": "Attachments",
    "options": "Image Attachments"
+  },
+  {
+   "fieldname": "column_break_rrlm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_xcqh",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-06-26 09:41:00.471604",
+ "modified": "2025-06-26 09:58:45.523744",
  "modified_by": "atul.raj@eits.com",
  "module": "Eits App",
  "name": "SiteDimension",
