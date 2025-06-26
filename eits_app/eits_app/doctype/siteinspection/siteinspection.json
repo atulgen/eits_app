@@ -23,6 +23,7 @@
   "site_photos",
   "measurement_sketch",
   "inspection_notes",
+  "photos",
   "status_and_follow_up_section",
   "inspection_status",
   "column_break_bnvi",
@@ -161,14 +162,20 @@
    "fieldname": "next_action",
    "fieldtype": "Text",
    "label": "Next Action"
+  },
+  {
+   "fieldname": "photos",
+   "fieldtype": "Attach",
+   "label": "Photos",
+   "length": 10
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-06-20 12:54:16.574827",
- "modified_by": "Administrator",
+ "modified": "2025-06-25 13:06:06.904367",
+ "modified_by": "atul.raj@eits.com",
  "module": "Eits App",
  "name": "SiteInspection",
  "naming_rule": "Expression",
