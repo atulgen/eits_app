@@ -1,4 +1,5 @@
 {
+ "_liked_by": "[\"Administrator\"]",
  "actions": [],
  "allow_rename": 1,
  "creation": "2025-06-20 12:42:21.279217",
@@ -12,10 +13,9 @@
   "column_break_rrlm",
   "room",
   "dimensionsunits",
-  "table_tdhy",
-  "column_break_xcqh",
-  "entity",
-  "media"
+  "media",
+  "section_break_fvaw",
+  "image_preview"
  ],
  "fields": [
   {
@@ -34,8 +34,7 @@
   },
   {
    "fieldname": "media",
-   "fieldtype": "Attach",
-   "in_list_view": 1,
+   "fieldtype": "Attach Image",
    "label": "Media"
   },
   {
@@ -60,31 +59,22 @@
    "options": "Entity"
   },
   {
-   "fieldname": "remarks",
-   "fieldtype": "Small Text",
-   "label": "Remarks"
+   "fieldname": "section_break_fvaw",
+   "fieldtype": "Section Break"
   },
   {
-   "fieldname": "table_tdhy",
-   "fieldtype": "Table",
-   "label": "Attachments",
-   "options": "Image Attachments"
-  },
-  {
-   "fieldname": "column_break_rrlm",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_xcqh",
-   "fieldtype": "Column Break"
+   "fieldname": "image_preview",
+   "fieldtype": "Data",
+   "label": "Media preview",
+   "read_only": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-06-26 09:58:45.523744",
- "modified_by": "atul.raj@eits.com",
+ "modified": "2025-06-28 12:24:51.671469",
+ "modified_by": "Administrator",
  "module": "Eits App",
  "name": "SiteDimension",
  "owner": "Administrator",

@@ -1,0 +1,168 @@
+{
+ "_comments": "[]",
+ "_liked_by": "[]",
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:JE-{YYYY}-{MM}-{DD}-siteinspection-{#####}",
+ "creation": "2025-06-26 12:10:38.461699",
+ "custom": 1,
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_kidj",
+  "siteinspection",
+  "customer_name",
+  "column_break_zqag",
+  "estimation_date",
+  "project_type",
+  "section_break_tppf",
+  "column_break_wuma",
+  "estimated_start_date",
+  "column_break_duli",
+  "estimated_end_date",
+  "section_break_iwly",
+  "site_dimensions",
+  "all_images_preview",
+  "section_break_iubw",
+  "column_break_pkqv",
+  "boq",
+  "total_estimation_amount",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_kidj",
+   "fieldtype": "Section Break",
+   "label": "Basic Information"
+  },
+  {
+   "fieldname": "siteinspection",
+   "fieldtype": "Link",
+   "label": "SiteInspection",
+   "options": "SiteInspection"
+  },
+  {
+   "fetch_from": "siteinspection.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "column_break_zqag",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimation_date",
+   "fieldtype": "Date",
+   "label": "Estimation Creation Date"
+  },
+  {
+   "fieldname": "project_type",
+   "fieldtype": "Select",
+   "label": "Project Type",
+   "options": "New Construction\nRenovation\nRepair\nInterior Design\nFurniture Making"
+  },
+  {
+   "fieldname": "section_break_tppf",
+   "fieldtype": "Section Break",
+   "label": "Estimated Completion Time"
+  },
+  {
+   "fieldname": "column_break_wuma",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimated_start_date",
+   "fieldtype": "Date",
+   "label": "Estimated Start Date"
+  },
+  {
+   "fieldname": "column_break_duli",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimated_end_date",
+   "fieldtype": "Date",
+   "label": "Estimated End Date"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_iwly",
+   "fieldtype": "Section Break",
+   "label": "Site Inspection Details"
+  },
+  {
+   "fieldname": "site_dimensions",
+   "fieldtype": "Table",
+   "label": "Site dimension",
+   "options": "SiteDimension"
+  },
+  {
+   "fieldname": "all_images_preview",
+   "fieldtype": "HTML",
+   "label": "Media Preview",
+   "options": "<div id=\"all-images-container\"></div>",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_iubw",
+   "fieldtype": "Section Break",
+   "label": "Materials Required"
+  },
+  {
+   "fieldname": "column_break_pkqv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "boq",
+   "fieldtype": "Table",
+   "label": "BoQ",
+   "options": "Materials Required_BOQ"
+  },
+  {
+   "fieldname": "total_estimation_amount",
+   "fieldtype": "Currency",
+   "label": "Total Estimation Amount"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "JobEstimation",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-01 13:55:20.819574",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "JobEstimation",
+ "naming_rule": "Expression",
+ "owner": "aditya@gmail.com",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
