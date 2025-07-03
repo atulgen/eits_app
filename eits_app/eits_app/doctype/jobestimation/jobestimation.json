@@ -1,9 +1,7 @@
 {
- "_comments": "[]",
- "_liked_by": "[]",
  "actions": [],
  "allow_rename": 1,
- "autoname": "format:JE-{YYYY}-{MM}-{DD}-siteinspection-{#####}",
+ "autoname": "format:JE-{YY}-{MM}-{DD}-{#####}",
  "creation": "2025-06-26 12:10:38.461699",
  "custom": 1,
  "doctype": "DocType",
@@ -15,11 +13,6 @@
   "column_break_zqag",
   "estimation_date",
   "project_type",
-  "section_break_tppf",
-  "column_break_wuma",
-  "estimated_start_date",
-  "column_break_duli",
-  "estimated_end_date",
   "section_break_iwly",
   "site_dimensions",
   "all_images_preview",
@@ -27,7 +20,16 @@
   "column_break_pkqv",
   "boq",
   "total_estimation_amount",
-  "amended_from"
+  "amended_from",
+  "section_break_tppf",
+  "column_break_wuma",
+  "estimated_start_date",
+  "column_break_duli",
+  "estimated_end_date",
+  "is_different_from_this",
+  "manual_end_date",
+  "section_break_pufd",
+  "tentative_schedule_for_execution"
  ],
  "fields": [
   {
@@ -61,29 +63,6 @@
    "fieldtype": "Select",
    "label": "Project Type",
    "options": "New Construction\nRenovation\nRepair\nInterior Design\nFurniture Making"
-  },
-  {
-   "fieldname": "section_break_tppf",
-   "fieldtype": "Section Break",
-   "label": "Estimated Completion Time"
-  },
-  {
-   "fieldname": "column_break_wuma",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "estimated_start_date",
-   "fieldtype": "Date",
-   "label": "Estimated Start Date"
-  },
-  {
-   "fieldname": "column_break_duli",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "estimated_end_date",
-   "fieldtype": "Date",
-   "label": "Estimated End Date"
   },
   {
    "collapsible": 1,
@@ -134,13 +113,60 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "section_break_tppf",
+   "fieldtype": "Section Break",
+   "label": "Estimated Completion Time"
+  },
+  {
+   "fieldname": "column_break_wuma",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimated_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Estimated Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_duli",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimated_end_date",
+   "fieldtype": "Date",
+   "label": "Estimated End Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_different_from_this",
+   "fieldtype": "Check",
+   "label": "Is Different from this"
+  },
+  {
+   "depends_on": "is_different_from_this",
+   "fieldname": "manual_end_date",
+   "fieldtype": "Date",
+   "label": "Manual End Date"
+  },
+  {
+   "fieldname": "section_break_pufd",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tentative_schedule_for_execution",
+   "fieldtype": "Table",
+   "label": "Tentative Schedule For Execution",
+   "options": "Tentative Schedule"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-01 13:55:20.819574",
+ "modified": "2025-07-03 14:33:09.725947",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",
