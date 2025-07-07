@@ -25,21 +25,21 @@
   "boq",
   "total_estimation_amount",
   "amended_from",
+  "section_break_pufd",
+  "tentative_schedule_for_execution",
   "section_break_tppf",
   "column_break_wuma",
   "estimated_start_date",
   "column_break_duli",
   "estimated_end_date",
   "is_different_from_this",
-  "manual_end_date",
-  "section_break_pufd",
-  "tentative_schedule_for_execution"
+  "manual_end_date"
  ],
  "fields": [
   {
    "fieldname": "section_break_kidj",
    "fieldtype": "Section Break",
-   "label": "Basic Information"
+   "label": "1. Basic Information"
   },
   {
    "fieldname": "siteinspection",
@@ -83,7 +83,7 @@
    "collapsible": 1,
    "fieldname": "section_break_iwly",
    "fieldtype": "Section Break",
-   "label": "Site Inspection Details"
+   "label": "2. Site Inspection Details"
   },
   {
    "fieldname": "site_dimensions",
@@ -116,7 +116,7 @@
    "collapsible": 1,
    "fieldname": "section_break_iubw",
    "fieldtype": "Section Break",
-   "label": "Materials Required"
+   "label": "3. Final Output Required"
   },
   {
    "fieldname": "column_break_pkqv",
@@ -142,6 +142,18 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_pufd",
+   "fieldtype": "Section Break",
+   "label": "4. Resource and Manpower Required"
+  },
+  {
+   "fieldname": "tentative_schedule_for_execution",
+   "fieldtype": "Table",
+   "label": "Tentative Schedule For Execution",
+   "options": "execution_work"
   },
   {
    "fieldname": "section_break_tppf",
@@ -179,25 +191,13 @@
    "fieldname": "manual_end_date",
    "fieldtype": "Date",
    "label": "Manual End Date"
-  },
-  {
-   "collapsible": 1,
-   "fieldname": "section_break_pufd",
-   "fieldtype": "Section Break",
-   "label": "Resource and Manpower Required"
-  },
-  {
-   "fieldname": "tentative_schedule_for_execution",
-   "fieldtype": "Table",
-   "label": "Tentative Schedule For Execution",
-   "options": "execution_work"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-07 15:05:48.975089",
+ "modified": "2025-07-07 15:38:18.436659",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",

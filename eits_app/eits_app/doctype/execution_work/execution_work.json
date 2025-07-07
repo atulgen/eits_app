@@ -8,14 +8,22 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
+  "operation",
   "date",
   "time",
-  "operation",
   "employee",
   "custom_hourly_rate",
   "remarks"
  ],
  "fields": [
+  {
+   "fieldname": "operation",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Operation",
+   "options": "Operation",
+   "reqd": 1
+  },
   {
    "fieldname": "date",
    "fieldtype": "Date",
@@ -30,14 +38,6 @@
    "fieldtype": "Float",
    "in_list_view": 1,
    "label": "Time",
-   "reqd": 1
-  },
-  {
-   "fieldname": "operation",
-   "fieldtype": "Link",
-   "in_list_view": 1,
-   "label": "Operation",
-   "options": "Operation",
    "reqd": 1
   },
   {
@@ -66,7 +66,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-05 16:55:46.087398",
+ "modified": "2025-07-07 15:37:24.020327",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "execution_work",
