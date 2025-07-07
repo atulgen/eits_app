@@ -162,21 +162,23 @@
    "label": "Manual End Date"
   },
   {
+   "collapsible": 1,
    "fieldname": "section_break_pufd",
-   "fieldtype": "Section Break"
+   "fieldtype": "Section Break",
+   "label": "Resource and Manpower Required"
   },
   {
    "fieldname": "tentative_schedule_for_execution",
    "fieldtype": "Table",
    "label": "Tentative Schedule For Execution",
-   "options": "Tentative Schedule"
+   "options": "execution_work"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-05 10:58:00.073950",
+ "modified": "2025-07-07 10:38:59.905556",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",
