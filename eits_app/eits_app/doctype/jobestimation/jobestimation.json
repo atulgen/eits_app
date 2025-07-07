@@ -18,6 +18,8 @@
   "section_break_iwly",
   "site_dimensions",
   "all_images_preview",
+  "site_images",
+  "measurement_sketch",
   "section_break_iubw",
   "column_break_pkqv",
   "boq",
@@ -90,6 +92,20 @@
    "fieldname": "all_images_preview",
    "fieldtype": "HTML",
    "label": "Media Preview",
+   "options": "<div id=\"all-images-container\"></div>",
+   "read_only": 1
+  },
+  {
+   "fieldname": "site_images",
+   "fieldtype": "HTML",
+   "label": "Site Images",
+   "options": "<div id=\"all-images-container\"></div>",
+   "read_only": 1
+  },
+  {
+   "fieldname": "measurement_sketch",
+   "fieldtype": "HTML",
+   "label": "Measurement Sketch",
    "options": "<div id=\"all-images-container\"></div>",
    "read_only": 1
   },
@@ -178,7 +194,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-07 10:38:59.905556",
+ "modified": "2025-07-07 12:45:01.687416",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",
