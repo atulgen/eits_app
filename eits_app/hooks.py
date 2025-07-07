@@ -13,7 +13,7 @@ fixtures = [
 # Apps
 # ------------------
 
-fixtures = ["Server Script"]
+fixtures = ["Server Script" ,"Client Script" ]
 
 
 # required_apps = []
