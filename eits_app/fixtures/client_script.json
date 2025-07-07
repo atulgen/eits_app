@@ -20,5 +20,27 @@
   "name": "toggle",
   "script": "frappe.ui.form.on('JobEstimation', {\r\n    is_different_from_this: function(frm) {\r\n        if (frm.doc.is_different_from_this) {\r\n            frm.set_df_property('estimated_end_date', 'hidden', 1);\r\n            frm.set_df_property('manual_end_date', 'hidden', 0);\r\n        } else {\r\n            frm.set_df_property('estimated_end_date', 'hidden', 0);\r\n            frm.set_df_property('manual_end_date', 'hidden', 1);\r\n        }\r\n    },\r\n\r\n    refresh: function(frm) {\r\n        // Make sure visibility is correct on form load\r\n        frm.trigger('is_different_from_this');\r\n    }\r\n});\r\n",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "JobEstimation",
+  "enabled": 1,
+  "modified": "2025-07-05 12:49:55.179902",
+  "module": "Eits App",
+  "name": "Employee Filter based on operation",
+  "script": "// Main DocType (JobEstimation) events\r\nfrappe.ui.form.on('JobEstimation', {\r\n    refresh: function(frm) {\r\n        frm.set_query('employee', 'tentative_schedule_for_execution', function(doc, cdt, cdn) {\r\n            let child_doc = locals[cdt][cdn];\r\n            \r\n            if (child_doc && child_doc.operation) {\r\n                return {\r\n                    filters: {\r\n                        'operation': child_doc.operation\r\n                    }\r\n                };\r\n            }\r\n            return {};\r\n        });\r\n        // Check employee availability before allowing selection\r\n    }\r\n});\r\n\r\n// Child Table (execution_work) events\r\nfrappe.ui.form.on('execution_work', {\r\n    operation: function(frm, cdt, cdn) {\r\n        let child_doc = locals[cdt][cdn];\r\n        \r\n        // Clear employee if operation changes\r\n        if (child_doc.employee) {\r\n            frappe.model.set_value(cdt, cdn, 'employee', '');\r\n        }\r\n        \r\n        // Refresh the field\r\n        frm.refresh_field('tentative_schedule_for_execution');\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "JobEstimation",
+  "enabled": 1,
+  "modified": "2025-07-05 14:17:28.399421",
+  "module": "Eits App",
+  "name": "Job Estimation - Create Booking Employee",
+  "script": "// Client Script Configuration (to be entered in ERPNext UI)\r\n\r\n// Script Name: Job Estimation - Manual Booking Button\r\n// Document Type: Job Estimation\r\n// Script Type: Form Script\r\n\r\nfrappe.ui.form.on('JobEstimation', {\r\n    refresh: function(frm) {\r\n        // Add custom button to manually create Booking Employee records\r\n        if (frm.doc.docstatus === 1 && frm.doc.job_execution && frm.doc.job_execution.length > 0) {\r\n            frm.add_custom_button(__('Create Booking Records'), function() {\r\n                frappe.call({\r\n                    method: 'frappe.client.submit_doc',\r\n                    args: {\r\n                        doc: frm.doc\r\n                    },\r\n                    callback: function(r) {\r\n                        if (r.message) {\r\n                            frappe.msgprint(__('Booking Employee records creation triggered'));\r\n                            frm.refresh();\r\n                        }\r\n                    }\r\n                });\r\n            }, __('Actions'));\r\n        }\r\n    },\r\n    \r\n    // Validate before submit\r\n    before_submit: function(frm) {\r\n        if (frm.doc.job_execution && frm.doc.job_execution.length > 0) {\r\n            let missing_fields = [];\r\n            \r\n            frm.doc.job_execution.forEach(function(row, index) {\r\n                if (!row.employee) {\r\n                    missing_fields.push(`Row ${index + 1}: Employee is required`);\r\n                }\r\n                if (!row.date) {\r\n                    missing_fields.push(`Row ${index + 1}: Date is required`);\r\n                }\r\n            });\r\n            \r\n            if (missing_fields.length > 0) {\r\n                frappe.msgprint({\r\n                    title: __('Missing Required Fields'),\r\n                    message: missing_fields.join('<br>'),\r\n                    indicator: 'red'\r\n                });\r\n                frappe.validated = false;\r\n            }\r\n        }\r\n    }\r\n});",
+  "view": "Form"
  }
 ]
