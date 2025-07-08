@@ -25,15 +25,22 @@
   "boq",
   "total_estimation_amount",
   "amended_from",
-  "section_break_pufd",
-  "tentative_schedule_for_execution",
   "section_break_tppf",
   "column_break_wuma",
   "estimated_start_date",
   "column_break_duli",
   "estimated_end_date",
   "is_different_from_this",
-  "manual_end_date"
+  "manual_end_date",
+  "section_break_pufd",
+  "tentative_schedule_for_execution",
+  "5_total_summary_section",
+  "material_cost",
+  "material_total",
+  "manpower_cost",
+  "manpower_total",
+  "total",
+  "total_amount"
  ],
  "fields": [
   {
@@ -144,18 +151,6 @@
    "search_index": 1
   },
   {
-   "collapsible": 1,
-   "fieldname": "section_break_pufd",
-   "fieldtype": "Section Break",
-   "label": "4. Resource and Manpower Required"
-  },
-  {
-   "fieldname": "tentative_schedule_for_execution",
-   "fieldtype": "Table",
-   "label": "Tentative Schedule For Execution",
-   "options": "execution_work"
-  },
-  {
    "fieldname": "section_break_tppf",
    "fieldtype": "Section Break",
    "label": "Estimated Completion Time"
@@ -191,13 +186,63 @@
    "fieldname": "manual_end_date",
    "fieldtype": "Date",
    "label": "Manual End Date"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_pufd",
+   "fieldtype": "Section Break",
+   "label": "4. Resource and Manpower Required"
+  },
+  {
+   "fieldname": "tentative_schedule_for_execution",
+   "fieldtype": "Table",
+   "label": "Tentative Schedule For Execution",
+   "options": "execution_work"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "5_total_summary_section",
+   "fieldtype": "Section Break",
+   "label": "5. Total Summary"
+  },
+  {
+   "fieldname": "material_cost",
+   "fieldtype": "Heading",
+   "label": "Material Cost"
+  },
+  {
+   "fieldname": "material_total",
+   "fieldtype": "Table",
+   "label": "Material Total",
+   "options": "execution_work"
+  },
+  {
+   "fieldname": "manpower_cost",
+   "fieldtype": "Heading",
+   "label": "Manpower Cost"
+  },
+  {
+   "fieldname": "manpower_total",
+   "fieldtype": "Table",
+   "label": "Manpower Total",
+   "options": "execution_work"
+  },
+  {
+   "fieldname": "total",
+   "fieldtype": "Heading",
+   "label": "Total"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total amount"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-07 15:38:18.436659",
+ "modified": "2025-07-08 12:39:22.646204",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",
