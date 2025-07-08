@@ -35,11 +35,6 @@
   "section_break_pufd",
   "tentative_schedule_for_execution",
   "5_total_summary_section",
-  "material_cost",
-  "material_total",
-  "manpower_cost",
-  "manpower_total",
-  "total",
   "total_amount"
  ],
  "fields": [
@@ -151,6 +146,8 @@
    "search_index": 1
   },
   {
+   "collapsible": 1,
+   "default": "0",
    "fieldname": "section_break_tppf",
    "fieldtype": "Section Break",
    "label": "Estimated Completion Time"
@@ -203,34 +200,8 @@
    "collapsible": 1,
    "fieldname": "5_total_summary_section",
    "fieldtype": "Section Break",
+   "hidden": 1,
    "label": "5. Total Summary"
-  },
-  {
-   "fieldname": "material_cost",
-   "fieldtype": "Heading",
-   "label": "Material Cost"
-  },
-  {
-   "fieldname": "material_total",
-   "fieldtype": "Table",
-   "label": "Material Total",
-   "options": "execution_work"
-  },
-  {
-   "fieldname": "manpower_cost",
-   "fieldtype": "Heading",
-   "label": "Manpower Cost"
-  },
-  {
-   "fieldname": "manpower_total",
-   "fieldtype": "Table",
-   "label": "Manpower Total",
-   "options": "execution_work"
-  },
-  {
-   "fieldname": "total",
-   "fieldtype": "Heading",
-   "label": "Total"
   },
   {
    "fieldname": "total_amount",
@@ -242,7 +213,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-08 12:39:22.646204",
+ "modified": "2025-07-08 15:01:03.569089",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",
