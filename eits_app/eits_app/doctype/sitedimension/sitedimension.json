@@ -12,6 +12,7 @@
   "area_name",
   "dimensionsunits",
   "media",
+  "media_2",
   "image_preview"
  ],
  "fields": [
@@ -60,13 +61,18 @@
    "fieldtype": "Data",
    "label": "Media preview",
    "read_only": 1
+  },
+  {
+   "fieldname": "media_2",
+   "fieldtype": "Attach",
+   "label": "Media 2"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-08 09:51:35.690194",
+ "modified": "2025-07-09 08:44:17.730234",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "SiteDimension",
