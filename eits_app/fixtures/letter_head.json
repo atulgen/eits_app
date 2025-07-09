@@ -1,0 +1,25 @@
+[
+ {
+  "align": "Left",
+  "content": "<div style=\"text-align: left;\">\n<img src=\"/files/eitslogo.png\" alt=\"Print JobEstimation\" height=\"\" style=\"height: px;\">\n</div>",
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Letter Head",
+  "footer": "\n\n\n\n\n    \n        <div style=\"margin-top: 40px; text-align: center; background-color: #2c5aa0; color: white; padding: 15px; font-size: 14px; font-weight: bold;\">\n            Eco Innovative Technical Services LLC<br>\n            <span style=\"font-size: 12px;\">شركة إيكو للخدمات التقنية المتطورة</span>\n        </div>\n        \n         \n\n",
+  "footer_align": "Left",
+  "footer_image": null,
+  "footer_image_height": 0.0,
+  "footer_image_width": 0.0,
+  "footer_script": null,
+  "footer_source": "HTML",
+  "header_script": null,
+  "image": "/files/eitslogo.png",
+  "image_height": 0.0,
+  "image_width": 0.0,
+  "is_default": 1,
+  "letter_head_name": "Print JobEstimation",
+  "modified": "2025-07-09 15:32:32.328873",
+  "name": "Print JobEstimation",
+  "source": "Image"
+ }
+]
