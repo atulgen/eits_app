@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-09 11:16:18.464358",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee_tracker_section",
+  "name1",
+  "emirates_id",
+  "employee_number",
+  "attendance_date",
+  "start_time",
+  "end_time",
+  "column_break_zocy",
+  "job_id",
+  "location",
+  "customer_name",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee_tracker_section",
+   "fieldtype": "Section Break",
+   "label": "Employee Tracker"
+  },
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name"
+  },
+  {
+   "fieldname": "emirates_id",
+   "fieldtype": "Data",
+   "label": "Emirates Id"
+  },
+  {
+   "fieldname": "employee_number",
+   "fieldtype": "Data",
+   "label": "Employee Number"
+  },
+  {
+   "fieldname": "attendance_date",
+   "fieldtype": "Date",
+   "label": "Attendance Date"
+  },
+  {
+   "fieldname": "start_time",
+   "fieldtype": "Time",
+   "label": "Start Time"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End Time"
+  },
+  {
+   "fieldname": "column_break_zocy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "job_id",
+   "fieldtype": "Link",
+   "label": "Job ID ",
+   "options": "JobType"
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Small Text",
+   "label": "Location"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Employee Tracker",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-09 11:20:13.586029",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "Employee Tracker",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
