@@ -10,12 +10,9 @@
   "employee",
   "project",
   "status",
+  "hours",
   "remarks",
-  "amended_from",
-  "column_break_yiyp",
-  "customer_name",
-  "location",
-  "hours"
+  "amended_from"
  ],
  "fields": [
   {
@@ -45,6 +42,11 @@
    "options": "Booked\nAvailable"
   },
   {
+   "fieldname": "hours",
+   "fieldtype": "Data",
+   "label": "Hours"
+  },
+  {
    "fieldname": "remarks",
    "fieldtype": "Small Text",
    "label": "Remarks"
@@ -58,32 +60,13 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
-  },
-  {
-   "fieldname": "column_break_yiyp",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "customer_name",
-   "fieldtype": "Data",
-   "label": "Customer Name"
-  },
-  {
-   "fieldname": "location",
-   "fieldtype": "Small Text",
-   "label": "Location"
-  },
-  {
-   "fieldname": "hours",
-   "fieldtype": "Data",
-   "label": "Hours"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-09 10:53:37.941855",
+ "modified": "2025-07-09 11:15:06.995156",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Employee Booking",
