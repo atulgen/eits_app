@@ -8,7 +8,6 @@
   "section_break_vzeu",
   "amended_from",
   "job_id",
-  "job_type",
   "column_break_aawx",
   "customer_name",
   "order_ref_no",
@@ -47,11 +46,6 @@
    "fieldname": "customer_name",
    "fieldtype": "Data",
    "label": "Customer Name "
-  },
-  {
-   "fieldname": "job_type",
-   "fieldtype": "Data",
-   "label": "job type"
   },
   {
    "fieldname": "order_ref_no",
@@ -116,7 +110,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-09 12:02:12.049689",
+ "modified": "2025-07-09 14:10:09.614591",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Tracker",

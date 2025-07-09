@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "JobEstimation",
+  "enabled": 1,
+  "modified": "2025-07-03 17:13:32.550816",
+  "module": null,
+  "name": "auto calculate cost",
+  "script": "// Client Script for JobEstimation doctype\r\n// This script will automatically calculate total_estimation_amount when complete_cost changes\r\n\r\nfrappe.ui.form.on('JobEstimation', {\r\n    refresh: function(frm) {\r\n        // Calculate total when form loads\r\n        calculate_total_estimation_amount(frm);\r\n    }\r\n});\r\n\r\nfrappe.ui.form.on('Materials Required_BOQ', {\r\n    complete_cost: function(frm, cdt, cdn) {\r\n        // Calculate total when complete_cost changes\r\n        calculate_total_estimation_amount(frm);\r\n    },\r\n    \r\n    boq_add: function(frm, cdt, cdn) {\r\n        // Calculate total when new row is added\r\n        calculate_total_estimation_amount(frm);\r\n    },\r\n    \r\n    boq_remove: function(frm, cdt, cdn) {\r\n        // Calculate total when row is removed\r\n        calculate_total_estimation_amount(frm);\r\n    }\r\n});\r\n\r\nfunction calculate_total_estimation_amount(frm) {\r\n    let total = 0;\r\n    \r\n    // Loop through all rows in BOQ table\r\n    frm.doc.boq.forEach(function(row) {\r\n        if (row.complete_cost) {\r\n            total += flt(row.complete_cost);\r\n        }\r\n    });\r\n    \r\n    // Set the total_estimation_amount field\r\n    frm.set_value('total_estimation_amount', total);\r\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Resources Availability",
   "enabled": 0,
   "modified": "2025-07-05 11:26:30.685457",
