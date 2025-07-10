@@ -1,0 +1,141 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-09 10:22:11.535184",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_vzeu",
+  "amended_from",
+  "job_id",
+
+  "column_break_aawx",
+  "customer_name",
+  "order_ref_no",
+  "estimated_job_value",
+  "estimation_time_section",
+  "start_date",
+  "column_break_uuih",
+  "end_date",
+  "job_status_section",
+  "status",
+  "column_break_mspl",
+  "reason",
+  "percentage_of_work_done"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_vzeu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Job Tracker",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "job_id",
+   "fieldtype": "Data",
+   "label": "Job Id"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name "
+  },
+eldtype": "Data",
+   "label": "job type"
+  },
+  {
+   "fieldname": "order_ref_no",
+   "fieldtype": "Data",
+   "label": "Order ref no"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "start date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "end date"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not started\nFinished\nWork in progress"
+  },
+  {
+   "fieldname": "estimated_job_value",
+   "fieldtype": "Data",
+   "label": "Estimated job value"
+  },
+  {
+   "fieldname": "column_break_aawx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "estimation_time_section",
+   "fieldtype": "Section Break",
+   "label": "Estimation time"
+  },
+  {
+   "fieldname": "column_break_uuih",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "job_status_section",
+   "fieldtype": "Section Break",
+   "label": "Job status"
+  },
+  {
+   "fieldname": "column_break_mspl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Data",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "percentage_of_work_done",
+   "fieldtype": "Data",
+   "label": "Percentage of Work done"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-09 12:02:12.049689",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "Job Tracker",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
