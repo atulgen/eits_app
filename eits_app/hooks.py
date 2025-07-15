@@ -4,16 +4,16 @@ app_publisher = "GennextIT"
 app_description = "ERPNext customization for EITS"
 app_email = "atul.raj@gennextit.com"
 app_license = "mit"
-fixtures = [
-    {
-        "dt": "Client Script",
-        "filters": [["module", "=", "Eits App"]]
-    }
-]
+# fixtures = [
+#     {
+#         "dt": "Server Script",
+#         "filters": [["module", "=", "Eits App"]]
+#     }
+# ]
 # Apps
 # ------------------
 
-fixtures = ["Client Script" ]
+fixtures = ["Server Script" ]
 
 
 # required_apps = []
