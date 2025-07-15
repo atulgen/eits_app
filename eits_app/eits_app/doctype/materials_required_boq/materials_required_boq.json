@@ -17,7 +17,7 @@
    "fieldname": "entity",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Entity from site dim"
+   "label": "Area Name"
   },
   {
    "fieldname": "description",
@@ -44,7 +44,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-07 15:35:52.014694",
+ "modified": "2025-07-14 16:24:54.356193",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Materials Required_BOQ",

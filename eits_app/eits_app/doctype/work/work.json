@@ -1,0 +1,77 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-11 11:51:50.972993",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "work_title",
+  "work_description",
+  "project_title",
+  "expected_start_date",
+  "expected_time_in_hours",
+  "end_time"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fetch_from": "task.subject",
+   "fieldname": "work_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Work Title",
+   "options": "Task",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "task.description",
+   "fieldname": "work_description",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Work Description",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "task.exp_start_date",
+   "fieldname": "expected_start_date",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Start Time",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "task.expected_time",
+   "fieldname": "expected_time_in_hours",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Duration (in hours)"
+  },
+  {
+   "fieldname": "end_time",
+   "fieldtype": "Time",
+   "label": "End time "
+  },
+  {
+   "fieldname": "project_title",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Project Title",
+   "options": "Project"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-14 10:51:15.209847",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "Work",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

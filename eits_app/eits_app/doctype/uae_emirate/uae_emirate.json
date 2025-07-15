@@ -1,0 +1,100 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:emirate_name",
+ "creation": "2025-07-08 11:24:29.560166",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "emirate_name",
+  "emirate_code",
+  "arabic_name",
+  "capital_city",
+  "area_sq_km",
+  "population",
+  "enabled"
+ ],
+ "fields": [
+  {
+   "fieldname": "emirate_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Emirate Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "emirate_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Emirate Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "arabic_name",
+   "fieldtype": "Data",
+   "label": "Arabic Name"
+  },
+  {
+   "fieldname": "capital_city",
+   "fieldtype": "Data",
+   "label": "Capital City"
+  },
+  {
+   "fieldname": "area_sq_km",
+   "fieldtype": "Float",
+   "label": "Area (sq km)"
+  },
+  {
+   "fieldname": "population",
+   "fieldtype": "Int",
+   "label": "Population"
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-07-08 12:27:39.679825",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "UAE Emirate",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "All",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
