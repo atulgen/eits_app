@@ -1,0 +1,23 @@
+[
+ {
+  "cards": [],
+  "chart_options": null,
+  "charts": [
+   {
+    "chart": "Project Approval Status",
+    "parent": "Project Approval Dashboard",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
+    "width": "Half"
+   }
+  ],
+  "dashboard_name": "Project Approval Dashboard",
+  "docstatus": 0,
+  "doctype": "Dashboard",
+  "is_default": 0,
+  "is_standard": 0,
+  "modified": "2025-07-15 11:51:27.097793",
+  "module": null,
+  "name": "Project Approval Dashboard"
+ }
+]
