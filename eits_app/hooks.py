@@ -6,22 +6,26 @@ app_email = "atul.raj@gennextit.com"
 app_license = "mit"
 fixtures = [
     {
+        "dt": "Dashboard",
+        "filters": [["name", "in", ["Project Approval Dashboard"]]]
+    },
+    {
+        "dt": "Dashboard Chart",
+        "filters": [["name", "in", ["Project Approval Status"]]]
+    },
+    {
+        "dt": "Report",
+        "filters": [["ref_doctype", "=", "Project"]]
+    },
+    {
         "dt": "Client Script",
         "filters": [["module", "=", "Eits App"]]
-    }
+    },
+    "Server Script"
 ]
-# Apps
 # ------------------
 
-fixtures = ["Server Script" ,"Client Script" ]
 
-
-# required_apps = []
-
-# Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "eits_app",
 # 		"logo": "/assets/eits_app/logo.png",
 # 		"title": "Eits App",
 # 		"route": "/eits_app",

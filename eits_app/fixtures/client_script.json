@@ -2,34 +2,12 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
-  "dt": "JobEstimation",
-  "enabled": 1,
-  "modified": "2025-07-03 17:13:32.550816",
-  "module": null,
-  "name": "auto calculate cost",
-  "script": "// Client Script for JobEstimation doctype\r\n// This script will automatically calculate total_estimation_amount when complete_cost changes\r\n\r\nfrappe.ui.form.on('JobEstimation', {\r\n    refresh: function(frm) {\r\n        // Calculate total when form loads\r\n        calculate_total_estimation_amount(frm);\r\n    }\r\n});\r\n\r\nfrappe.ui.form.on('Materials Required_BOQ', {\r\n    complete_cost: function(frm, cdt, cdn) {\r\n        // Calculate total when complete_cost changes\r\n        calculate_total_estimation_amount(frm);\r\n    },\r\n    \r\n    boq_add: function(frm, cdt, cdn) {\r\n        // Calculate total when new row is added\r\n        calculate_total_estimation_amount(frm);\r\n    },\r\n    \r\n    boq_remove: function(frm, cdt, cdn) {\r\n        // Calculate total when row is removed\r\n        calculate_total_estimation_amount(frm);\r\n    }\r\n});\r\n\r\nfunction calculate_total_estimation_amount(frm) {\r\n    let total = 0;\r\n    \r\n    // Loop through all rows in BOQ table\r\n    frm.doc.boq.forEach(function(row) {\r\n        if (row.complete_cost) {\r\n            total += flt(row.complete_cost);\r\n        }\r\n    });\r\n    \r\n    // Set the total_estimation_amount field\r\n    frm.set_value('total_estimation_amount', total);\r\n}",
-  "view": "Form"
- },
- {
-  "docstatus": 0,
-  "doctype": "Client Script",
   "dt": "Resources Availability",
   "enabled": 1,
   "modified": "2025-07-04 17:30:58.844247",
   "module": "Eits App",
   "name": "test",
   "script": "// Working Client Script for Resources Availability\r\nfrappe.ui.form.on('Resources Availabilty', {\r\n    // Test on refresh\r\n    refresh: function(frm) {\r\n        console.log('=== FORM REFRESH ===');\r\n        console.log('DocType:', frm.doctype);\r\n        console.log('Current Job Estimation:', frm.doc.job_estimation);\r\n        \r\n        // Add button to manually trigger\r\n        frm.add_custom_button(__('Load Materials'), function() {\r\n            load_materials(frm);\r\n        });\r\n    },\r\n    \r\n    // Test on job_estimation change\r\n    job_estimation: function(frm) {\r\n        console.log('=== JOB ESTIMATION CHANGED ===');\r\n        console.log('New Value:', frm.doc.job_estimation);\r\n        frappe.msgprint('Job Estimation Changed: ' + frm.doc.job_estimation);\r\n        \r\n        if (frm.doc.job_estimation) {\r\n            load_materials(frm);\r\n        }\r\n    },\r\n    \r\n    // Test on validate\r\n    validate: function(frm) {\r\n        console.log('=== FORM VALIDATE ===');\r\n        console.log('Job Estimation:', frm.doc.job_estimation);\r\n    }\r\n});\r\n\r\n// Function to load materials\r\nfunction load_materials(frm) {\r\n    console.log('=== LOAD MATERIALS FUNCTION ===');\r\n    console.log('Loading materials for:', frm.doc.job_estimation);\r\n    \r\n    if (!frm.doc.job_estimation) {\r\n        frappe.msgprint('Please select a Job Estimation first');\r\n        return;\r\n    }\r\n    \r\n    // Clear existing data\r\n    frm.clear_table('raw_material_availabilty');\r\n    \r\n    // Show loading message\r\n    frappe.msgprint('Loading materials...');\r\n    \r\n    // Get BOQ data\r\n    frappe.call({\r\n        method: 'frappe.client.get_list',\r\n        args: {\r\n            doctype: 'BOQ',\r\n            filters: {\r\n                parent: frm.doc.job_estimation\r\n            },\r\n            fields: ['name', 'bom']\r\n        },\r\n        callback: function(r) {\r\n            console.log('BOQ Response:', r);\r\n            \r\n            if (r.message && r.message.length > 0) {\r\n                console.log('Found BOQ items:', r.message.length);\r\n                frappe.msgprint('Found ' + r.message.length + ' BOQ items');\r\n                \r\n                let total_boms = r.message.filter(item => item.bom).length;\r\n                let processed_boms = 0;\r\n                \r\n                // Process each BOQ item\r\n                r.message.forEach(function(boq_item) {\r\n                    console.log('Processing BOQ:', boq_item);\r\n                    \r\n                    if (boq_item.bom) {\r\n                        // Get BOM items\r\n                        frappe.call({\r\n                            method: 'frappe.client.get_list',\r\n                            args: {\r\n                                doctype: 'BOM Item',\r\n                                filters: {\r\n                                    parent: boq_item.bom\r\n                                },\r\n                                fields: ['item_name', 'qty']\r\n                            },\r\n                            callback: function(bom_response) {\r\n                                console.log('BOM Response for', boq_item.bom, ':', bom_response);\r\n                                \r\n                                if (bom_response.message && bom_response.message.length > 0) {\r\n                                    console.log('Found BOM items:', bom_response.message.length);\r\n                                    \r\n                                    // Add items to child table\r\n                                    bom_response.message.forEach(function(item) {\r\n                                        console.log('Adding item:', item);\r\n                                        let row = frm.add_child('raw_material_availabilty');\r\n                                        row.item_name = item.item_name;\r\n                                        row.qty = item.qty;\r\n                                    });\r\n                                    \r\n                                    // Refresh table\r\n                                    frm.refresh_field('raw_material_availabilty');\r\n                                } else {\r\n                                    console.log('No BOM items found for:', boq_item.bom);\r\n                                }\r\n                                \r\n                                processed_boms++;\r\n                                if (processed_boms === total_boms) {\r\n                                    frappe.msgprint('All materials loaded successfully!');\r\n                                    console.log('=== LOADING COMPLETE ===');\r\n                                }\r\n                            }\r\n                        });\r\n                    }\r\n                });\r\n            } else {\r\n                console.log('No BOQ items found');\r\n                frappe.msgprint('No BOQ items found for this job estimation');\r\n            }\r\n        }\r\n    });\r\n}",
-  "view": "Form"
- },
- {
-  "docstatus": 0,
-  "doctype": "Client Script",
-  "dt": "EstimateBudget",
-  "enabled": 1,
-  "modified": "2025-06-23 14:21:51.790345",
-  "module": null,
-  "name": "Estimate Budget filler",
-  "script": "frappe.ui.form.on('EstimateBudget', {\n    // Trigger when 'from' field changes\n    from: function(frm) {\n        update_estimate_range(frm);\n    },\n    \n    // Trigger when 'to' field changes\n    to: function(frm) {\n        update_estimate_range(frm);\n    }\n});\n\nfunction update_estimate_range(frm) {\n    const from_value = frm.doc.from;\n    const to_value = frm.doc.to;\n    \n    // Only proceed if 'from' field has a value\n    if (!from_value) {\n        frm.set_value('estimate_range', '');\n        return;\n    }\n    \n    // Get default currency from ERPNext system settings\n    const default_currency = frappe.defaults.get_default(\"currency\") || frappe.boot.sysdefaults.currency || \"USD\";\n    \n    let estimate_range = '';\n    \n    // Format the range based on conditions\n    if (to_value === 0 || !to_value) {\n        // If 'to' is 0 or empty, add \"& more\"\n        estimate_range = `${default_currency} ${format_currency(from_value)} & more`;\n    } else {\n        // Normal range format\n        estimate_range = `${default_currency} ${format_currency(from_value)} - ${default_currency} ${format_currency(to_value)}`;\n    }\n    \n    // Set the calculated value to estimate_range field\n    frm.set_value('estimate_range', estimate_range);\n}\n\nfunction format_currency(amount) {\n    // Convert number to string and add commas for thousands\n    return amount.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',');\n}",
   "view": "Form"
  },
  {
@@ -92,10 +70,10 @@
   "doctype": "Client Script",
   "dt": "Project",
   "enabled": 1,
-  "modified": "2025-07-11 14:07:40.070717",
+  "modified": "2025-07-15 12:59:43.403944",
   "module": "Eits App",
   "name": "name for proj",
-  "script": "frappe.ui.form.on('Project', {\r\n    customer(frm) {\r\n        let name = frm.doc.customer || '';\r\n        frm.set_value('custom_short_name', name.slice(0, 3).toUpperCase());\r\n    },\r\n    custom_address(frm) {\r\n        let address = frm.doc.custom_address || '';\r\n        frm.set_value('custom_short_address', address.slice(0, 3).toUpperCase());\r\n    },\r\n    custom_job_type(frm) {\r\n        let job = frm.doc.custom_job_type || '';\r\n        frm.set_value('custom_short_job_type', job.slice(0, 3).toUpperCase());\r\n    }\r\n});\r\n",
+  "script": "// frappe.ui.form.on('Project', {\r\n//     customer(frm) {\r\n//         let name = frm.doc.customer || '';\r\n//         frm.set_value('custom_short_name', name.slice(0, 3).toUpperCase());\r\n//     },\r\n//     custom_address(frm) {\r\n//         let address = frm.doc.custom_address || '';\r\n//         frm.set_value('custom_short_address', address.slice(0, 3).toUpperCase());\r\n//     },\r\n//     custom_job_type(frm) {\r\n//         let job = frm.doc.custom_job_type || '';\r\n//         frm.set_value('custom_short_job_type', job.slice(0, 3).toUpperCase());\r\n//     }\r\n// });\r\n\r\nfrappe.ui.form.on('Project', {\r\n    before_save(frm) {\r\n        if (frm.doc.customer) {\r\n            frm.set_value('custom_short_name', frm.doc.customer.slice(0, 3).toUpperCase());\r\n        }\r\n        if (frm.doc.custom_address) {\r\n            frm.set_value('custom_short_address', frm.doc.custom_address.slice(0, 3).toUpperCase());\r\n        }\r\n        if (frm.doc.custom_job_type) {\r\n            frm.set_value('custom_short_job_type', frm.doc.custom_job_type.slice(0, 3).toUpperCase());\r\n        }\r\n    }\r\n});",
   "view": "Form"
  },
  {
@@ -129,6 +107,17 @@
   "module": "Eits App",
   "name": "autofetching tasks while selecting employee in dwa",
   "script": "frappe.ui.form.on('Daily Work Allocation', {\n\trefresh(frm) {\n\t\t// your code here\n\t}\n})",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Project",
+  "enabled": 1,
+  "modified": "2025-07-15 15:05:37.984308",
+  "module": "Eits App",
+  "name": "approving the project in report",
+  "script": "frappe.ui.form.on('Project', {\r\n    refresh: function(frm) {\r\n        if (frm.doc.custom_approval_status === 'Draft') {\r\n            frm.add_custom_button('Approve', function() {\r\n                frm.set_value('custom_approval_status', 'Approved');\r\n                frm.save();\r\n            });\r\n        }\r\n    }\r\n});",
   "view": "Form"
  }
 ]
