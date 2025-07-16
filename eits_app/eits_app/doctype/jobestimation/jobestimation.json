@@ -11,6 +11,10 @@
   "siteinspection",
   "column_break_zqag",
   "estimation_date",
+  "estimated_start_date",
+  "estimated_end_date",
+  "is_different_from_this",
+  "manual_end_date",
   "column_break_amup",
   "customer_name",
   "column_break_ztdp",
@@ -25,13 +29,6 @@
   "boq",
   "total_estimation_amount",
   "amended_from",
-  "section_break_tppf",
-  "column_break_wuma",
-  "estimated_start_date",
-  "column_break_duli",
-  "estimated_end_date",
-  "is_different_from_this",
-  "manual_end_date",
   "section_break_pufd",
   "tentative_schedule_for_execution",
   "5_total_summary_section",
@@ -58,6 +55,30 @@
    "fieldname": "estimation_date",
    "fieldtype": "Date",
    "label": "Estimation Creation Date"
+  },
+  {
+   "fieldname": "estimated_start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Estimated Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "estimated_end_date",
+   "fieldtype": "Date",
+   "label": "Estimated End Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_different_from_this",
+   "fieldtype": "Check",
+   "label": "Is Different from this"
+  },
+  {
+   "depends_on": "is_different_from_this",
+   "fieldname": "manual_end_date",
+   "fieldtype": "Date",
+   "label": "Manual End Date"
   },
   {
    "fieldname": "column_break_amup",
@@ -147,45 +168,6 @@
   },
   {
    "collapsible": 1,
-   "default": "0",
-   "fieldname": "section_break_tppf",
-   "fieldtype": "Section Break",
-   "label": "Estimated Completion Time"
-  },
-  {
-   "fieldname": "column_break_wuma",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "estimated_start_date",
-   "fieldtype": "Date",
-   "in_list_view": 1,
-   "label": "Estimated Start Date",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_duli",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "estimated_end_date",
-   "fieldtype": "Date",
-   "label": "Estimated End Date"
-  },
-  {
-   "default": "0",
-   "fieldname": "is_different_from_this",
-   "fieldtype": "Check",
-   "label": "Is Different from this"
-  },
-  {
-   "depends_on": "is_different_from_this",
-   "fieldname": "manual_end_date",
-   "fieldtype": "Date",
-   "label": "Manual End Date"
-  },
-  {
-   "collapsible": 1,
    "fieldname": "section_break_pufd",
    "fieldtype": "Section Break",
    "label": "4. Resource and Manpower Required"
@@ -213,7 +195,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-14 16:24:54.522459",
+ "modified": "2025-07-16 15:26:12.641197",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "JobEstimation",
