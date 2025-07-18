@@ -10,13 +10,24 @@
   "date",
   "section_break_nqwe",
   "party_name",
-  "building_name",
   "property_no",
+  "column_break_btha",
+  "building_name",
   "area",
   "section_break_juqz",
   "start_date",
   "column_break_gsjx",
-  "finish_date"
+  "finish_date",
+  "section_break_qost",
+  "pressing_charges",
+  "section_break_tktr",
+  "material_sold",
+  "section_break_fiqp",
+  "prepared_by",
+  "approved_by",
+  "column_break_qzvg",
+  "project_id_no",
+  "ac_v_no_and_date"
  ],
  "fields": [
   {
@@ -79,13 +90,68 @@
    "fieldname": "finish_date",
    "fieldtype": "Date",
    "label": "Finish Date"
+  },
+  {
+   "fieldname": "section_break_qost",
+   "fieldtype": "Section Break",
+   "options": "Pressing Charges"
+  },
+  {
+   "fieldname": "pressing_charges",
+   "fieldtype": "Table",
+   "label": "Pressing Charges",
+   "options": "Pressing Charges"
+  },
+  {
+   "fieldname": "section_break_tktr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "material_sold",
+   "fieldtype": "Table",
+   "label": "Material Sold",
+   "options": "Material Sold"
+  },
+  {
+   "fieldname": "section_break_fiqp",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "prepared_by",
+   "fieldtype": "Link",
+   "label": "Prepared By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_qzvg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "project_id_no",
+   "fieldtype": "Data",
+   "label": "Project ID No"
+  },
+  {
+   "fieldname": "ac_v_no_and_date",
+   "fieldtype": "Data",
+   "label": "A/C V No and Date"
+  },
+  {
+   "fieldname": "column_break_btha",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-18 15:41:26.445488",
+ "modified": "2025-07-18 16:34:36.319423",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Card -Veneer Pressing",
