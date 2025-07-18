@@ -11,7 +11,8 @@
   "work_description",
   "expected_start_date",
   "expected_time_in_hours",
-  "end_time"
+  "end_time",
+  "task_creation_date"
  ],
  "fields": [
   {
@@ -58,13 +59,18 @@
    "in_list_view": 1,
    "label": "Project Title",
    "options": "Project"
+  },
+  {
+   "fieldname": "task_creation_date",
+   "fieldtype": "Date",
+   "label": "Task Creation Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-15 10:49:09.915513",
+ "modified": "2025-07-18 11:29:13.348942",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Work",
