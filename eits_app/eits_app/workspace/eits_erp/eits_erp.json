@@ -1,0 +1,49 @@
+{
+ "app": "erpnext",
+ "charts": [],
+ "content": "[{\"id\":\"FQUAkPPj-h\",\"type\":\"header\",\"data\":{\"text\":\"<span class=\\\"h4\\\">EITS ERP</span>\",\"col\":12}},{\"id\":\"4pfgoaXoLw\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Veneer Pressing Job Card\",\"col\":3}},{\"id\":\"cLuzxFDZ3Y\",\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Other Services Job Card\",\"col\":3}}]",
+ "creation": "2025-07-18 16:52:47.284036",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "chart",
+ "idx": 0,
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "EITS ERP",
+ "link_type": "DocType",
+ "links": [],
+ "modified": "2025-07-18 16:54:16.250851",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "EITS ERP",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [],
+ "sequence_id": 23.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Veneer Pressing Job Card",
+   "link_to": "Job Card -Veneer Pressing",
+   "stats_filter": "[]",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Other Services Job Card",
+   "link_to": "Job Card -Other Services",
+   "stats_filter": "[]",
+   "type": "DocType"
+  }
+ ],
+ "title": "EITS ERP",
+ "type": "Workspace"
+}
