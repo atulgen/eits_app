@@ -15,7 +15,7 @@
  "label": "EITS ERP",
  "link_type": "DocType",
  "links": [],
- "modified": "2025-07-18 16:54:16.250851",
+ "modified": "2025-07-18 17:13:37.760802",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "EITS ERP",
@@ -42,8 +42,21 @@
    "link_to": "Job Card -Other Services",
    "stats_filter": "[]",
    "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Daily Work Allocation",
+   "link_to": "Daily Work Allocation",
+   "type": "DocType"
+  },
+  {
+   "doc_view": "List",
+   "label": "Job Estimation",
+   "link_to": "JobEstimation",
+   "type": "DocType"
   }
  ],
  "title": "EITS ERP",
  "type": "Workspace"
 }
+
