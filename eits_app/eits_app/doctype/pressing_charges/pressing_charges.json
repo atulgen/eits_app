@@ -1,0 +1,68 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-18 15:41:47.955539",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "work_type",
+  "size",
+  "thickness",
+  "no_of_sides",
+  "price",
+  "amount"
+ ],
+ "fields": [
+  {
+   "fieldname": "size",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Size"
+  },
+  {
+   "fieldname": "thickness",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Thickness"
+  },
+  {
+   "fieldname": "no_of_sides",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "No of Sides"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Price"
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Amount"
+  },
+  {
+   "fieldname": "work_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Work Type"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-07-18 15:46:58.893696",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "Pressing Charges",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
