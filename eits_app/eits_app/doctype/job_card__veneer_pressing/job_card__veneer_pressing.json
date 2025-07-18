@@ -55,7 +55,7 @@
   },
   {
    "fieldname": "party_name",
-   "fieldtype": "Date",
+   "fieldtype": "Data",
    "label": "Party Name"
   },
   {
