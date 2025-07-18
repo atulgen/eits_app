@@ -18,7 +18,13 @@
   "section_break_juqz",
   "start_date",
   "column_break_gsjx",
-  "finish_date"
+  "finish_date",
+  "section_break_ejly",
+  "prepared_by",
+  "approved_by",
+  "column_break_ctzr",
+  "project_id_no",
+  "ac_v_no_and_date"
  ],
  "fields": [
   {
@@ -83,16 +89,6 @@
    "label": "Finish Date"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Job Card -Other Services",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "section_break_fyvz",
    "fieldtype": "Section Break"
   },
@@ -101,13 +97,43 @@
    "fieldtype": "Table",
    "label": "Services",
    "options": "other services"
+  },
+  {
+   "fieldname": "section_break_ejly",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "prepared_by",
+   "fieldtype": "Link",
+   "label": "Prepared By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_ctzr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "project_id_no",
+   "fieldtype": "Data",
+   "label": "Project ID No"
+  },
+  {
+   "fieldname": "ac_v_no_and_date",
+   "fieldtype": "Data",
+   "label": "A/C V No and Date"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-18 16:15:13.711338",
+ "modified": "2025-07-18 16:48:02.588971",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Card -Other Services",
