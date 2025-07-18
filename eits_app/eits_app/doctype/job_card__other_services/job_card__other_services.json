@@ -83,16 +83,6 @@
    "label": "Finish Date"
   },
   {
-   "fieldname": "amended_from",
-   "fieldtype": "Link",
-   "label": "Amended From",
-   "no_copy": 1,
-   "options": "Job Card -Other Services",
-   "print_hide": 1,
-   "read_only": 1,
-   "search_index": 1
-  },
-  {
    "fieldname": "section_break_fyvz",
    "fieldtype": "Section Break"
   },
