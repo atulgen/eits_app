@@ -15,7 +15,7 @@
  "label": "EITS ERP",
  "link_type": "DocType",
  "links": [],
- "modified": "2025-07-18 17:13:37.760802",
+ "modified": "2025-07-18 17:20:54.551811",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "EITS ERP",
@@ -24,7 +24,11 @@
  "parent_page": "",
  "public": 1,
  "quick_lists": [],
- "roles": [],
+ "roles": [
+  {
+   "role": "EITS_Project_Manager"
+  }
+ ],
  "sequence_id": 23.0,
  "shortcuts": [
   {
@@ -59,4 +63,3 @@
  "title": "EITS ERP",
  "type": "Workspace"
 }
-
