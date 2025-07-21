@@ -11,7 +11,8 @@
   "start_date",
   "finish_date",
   "invoice_date",
-  "invoice_no"
+  "invoice_no",
+  "price"
  ],
  "fields": [
   {
@@ -50,13 +51,18 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Invoice No"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "price"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-21 16:56:06.824279",
+ "modified": "2025-07-21 19:12:04.172144",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "other services",
