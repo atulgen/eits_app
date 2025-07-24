@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:PR-{YY}-{MM}-{DD}-{####}",
+ "creation": "2025-07-24 15:09:46.789014",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_ea3t",
+  "amended_from",
+  "date_and_time",
+  "bill_number",
+  "method",
+  "amount_aed",
+  "paid_by",
+  "paid_to",
+  "attachments",
+  "column_break_qzdj",
+  "attachment_preview"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_ea3t",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Payment",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "date_and_time",
+   "fieldtype": "Datetime",
+   "label": "Date and Time"
+  },
+  {
+   "fieldname": "bill_number",
+   "fieldtype": "Data",
+   "label": "Bill Number"
+  },
+  {
+   "fieldname": "method",
+   "fieldtype": "Select",
+   "label": "Method",
+   "options": "Cash\nCheque\nAccount"
+  },
+  {
+   "fieldname": "amount_aed",
+   "fieldtype": "Float",
+   "label": "Amount (AED)"
+  },
+  {
+   "fieldname": "paid_by",
+   "fieldtype": "Data",
+   "label": "Paid By"
+  },
+  {
+   "fieldname": "paid_to",
+   "fieldtype": "Data",
+   "label": "Paid to"
+  },
+  {
+   "fieldname": "column_break_qzdj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "attachment_preview",
+   "fieldtype": "HTML",
+   "label": "Attachment Preview"
+  },
+  {
+   "fieldname": "attachments",
+   "fieldtype": "Attach",
+   "label": "Attachments"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-24 16:11:50.189816",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "Payment",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
