@@ -16,9 +16,10 @@
  "fields": [
   {
    "fieldname": "work_type",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Work Type"
+   "label": "Work Type",
+   "options": "Item"
   },
   {
    "fieldname": "size",
@@ -57,7 +58,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-18 15:45:31.835152",
+ "modified": "2025-07-21 14:01:27.800498",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Material Sold",

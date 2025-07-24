@@ -25,6 +25,7 @@
   "section_break_fiqp",
   "prepared_by",
   "approved_by",
+  "total_amount",
   "column_break_qzvg",
   "project_id_no",
   "ac_v_no_and_date"
@@ -119,6 +120,7 @@
   {
    "fieldname": "prepared_by",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Prepared By",
    "options": "Employee"
   },
@@ -129,29 +131,37 @@
   {
    "fieldname": "approved_by",
    "fieldtype": "Link",
+   "hidden": 1,
    "label": "Approved By",
    "options": "Employee"
   },
   {
    "fieldname": "project_id_no",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "Project ID No"
   },
   {
    "fieldname": "ac_v_no_and_date",
    "fieldtype": "Data",
+   "hidden": 1,
    "label": "A/C V No and Date"
   },
   {
    "fieldname": "column_break_btha",
    "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_amount",
+   "fieldtype": "Float",
+   "label": "Total Amount"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-18 16:34:36.319423",
+ "modified": "2025-07-24 17:47:22.668965",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Card -Veneer Pressing",
