@@ -85,13 +85,13 @@
   "doctype_event": "After Save",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2025-07-25 15:33:49.631334",
+  "modified": "2025-07-25 17:21:45.170487",
   "module": "Eits App",
   "name": "auto jc to payment",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": "Job Card -Veneer Pressing",
-  "script": "if doc.custom_customer_name and doc.date:\r\n    amount = 0\r\n    try:\r\n        for row in doc.pressing_charges:\r\n            if hasattr(row, \"amount\") and row.amount:\r\n                amount += row.amount or 0\r\n    except Exception:\r\n        amount = 0\r\n\r\n    payment = frappe.get_doc({\r\n        \"doctype\": \"Payment\",\r\n        \"date_and_time\": doc.date,\r\n        \"amount_aed\": doc.total_amount,\r\n        \"paid_by\": doc.custom_customer_name\r\n    })\r\n    payment.insert()\r\n",
+  "script": "if doc.party_name and doc.date:\n    amount = 0\n    try:\n        for row in doc.pressing_charges:\n            if hasattr(row, \"amount\") and row.amount:\n                amount += row.amount or 0\n    except Exception:\n        amount = 0\n\n    payment = frappe.get_doc({\n        \"doctype\": \"Payment\",\n        \"date_and_time\": doc.date,\n        \"amount_aed\": doc.total_amount,\n        \"paid_by\": doc.party_name\n    })\n    payment.insert()\n",
   "script_type": "DocType Event"
  },
  {

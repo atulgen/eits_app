@@ -5,22 +5,22 @@ app_description = "ERPNext customization for EITS"
 app_email = "atul.raj@gennextit.com"
 app_license = "mit"
 fixtures = [
-    {
-        "dt": "Dashboard",
-        "filters": [["name", "in", ["Project Approval Dashboard"]]]
-    },
-    {
-        "dt": "Dashboard Chart",
-        "filters": [["name", "in", ["Project Approval Status"]]]
-    },
-    {
-        "dt": "Report",
-        "filters": [["ref_doctype", "=", "Project"]]
-    },
-    {
-        "dt": "Client Script",
-        "filters": [["module", "=", "Eits App"]]
-    },
+    # {
+    #     "dt": "Dashboard",
+    #     "filters": [["name", "in", ["Project Approval Dashboard"]]]
+    # },
+    # {
+    #     "dt": "Dashboard Chart",
+    #     "filters": [["name", "in", ["Project Approval Status"]]]
+    # },
+    # {
+    #     "dt": "Report",
+    #     "filters": [["ref_doctype", "=", "Project"]]
+    # },
+    # {
+    #     "dt": "Client Script",
+    #     "filters": [["module", "=", "Eits App"]]
+    # },
     "Server Script"
 ]
 # ------------------
