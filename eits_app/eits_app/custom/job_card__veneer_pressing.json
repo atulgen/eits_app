@@ -147,7 +147,7 @@
    "dt": "Job Card -Veneer Pressing",
    "fetch_from": null,
    "fetch_if_empty": 0,
-   "fieldname": "custom_customer_name",
+   "fieldname": "party_name",
    "fieldtype": "Link",
    "hidden": 0,
    "hide_border": 0,
@@ -170,7 +170,7 @@
    "modified": "2025-07-19 12:49:11.002012",
    "modified_by": "Administrator",
    "module": null,
-   "name": "Job Card -Veneer Pressing-custom_customer_name",
+   "name": "Job Card -Veneer Pressing-party_name",
    "no_copy": 0,
    "non_negative": 0,
    "options": "Customer",
@@ -881,7 +881,7 @@
    "property": "field_order",
    "property_type": "Data",
    "row_name": null,
-   "value": "[\"section_break_7wio\", \"amended_from\", \"date\", \"section_break_nqwe\", \"building_name\", \"property_no\", \"column_break_btha\", \"area\", \"custom_customer_name\", \"section_break_juqz\", \"start_date\", \"column_break_gsjx\", \"finish_date\", \"section_break_qost\", \"pressing_charges\", \"section_break_tktr\", \"material_sold\", \"custom_section_break_5hm1q\", \"total_amount\", \"section_break_fiqp\", \"prepared_by\", \"approved_by\", \"column_break_qzvg\", \"project_id_no\", \"ac_v_no_and_date\", \"custom_section_break_ddyux\", \"custom_pressing_charges\", \"custom_materials_sold\", \"custom_section_break_zx2lc\", \"custom_prepared_by\", \"custom_approved_by\", \"custom_project_id_no_\", \"custom_ac_v_no__date\", \"party_name\", \"custom_total_pressing_charges\", \"custom_total_material_sold\", \"custom_grand_total\"]"
+   "value": "[\"section_break_7wio\", \"amended_from\", \"date\", \"section_break_nqwe\", \"building_name\", \"property_no\", \"column_break_btha\", \"area\", \"party_name\", \"section_break_juqz\", \"start_date\", \"column_break_gsjx\", \"finish_date\", \"section_break_qost\", \"pressing_charges\", \"section_break_tktr\", \"material_sold\", \"custom_section_break_5hm1q\", \"total_amount\", \"section_break_fiqp\", \"prepared_by\", \"approved_by\", \"column_break_qzvg\", \"project_id_no\", \"ac_v_no_and_date\", \"custom_section_break_ddyux\", \"custom_pressing_charges\", \"custom_materials_sold\", \"custom_section_break_zx2lc\", \"custom_prepared_by\", \"custom_approved_by\", \"custom_project_id_no_\", \"custom_ac_v_no__date\", \"party_name\", \"custom_total_pressing_charges\", \"custom_total_material_sold\", \"custom_grand_total\"]"
   },
   {
    "_assign": null,
