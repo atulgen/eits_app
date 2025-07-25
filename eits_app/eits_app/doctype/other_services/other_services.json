@@ -11,14 +11,16 @@
   "start_date",
   "finish_date",
   "invoice_date",
-  "invoice_no"
+  "invoice_no",
+  "price"
  ],
  "fields": [
   {
    "fieldname": "work_type",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Work Type"
+   "label": "Work Type",
+   "options": "JobType"
   },
   {
    "fieldname": "work_description",
@@ -49,6 +51,11 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Invoice No"
+  },
+  {
+   "fieldname": "price",
+   "fieldtype": "Currency",
+   "label": "price"
   }
  ],
  "grid_page_length": 50,
