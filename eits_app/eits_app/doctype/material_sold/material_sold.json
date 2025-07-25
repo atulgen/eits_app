@@ -11,7 +11,8 @@
   "thickness",
   "no_of_sides",
   "price",
-  "amount"
+  "amount",
+  "remarks"
  ],
  "fields": [
   {
@@ -52,13 +53,18 @@
    "in_list_view": 1,
    "label": "Amount",
    "precision": "2"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Long Text",
+   "label": "Remarks"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-07-21 14:01:27.800498",
+ "modified": "2025-07-25 11:53:34.154282",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Material Sold",
