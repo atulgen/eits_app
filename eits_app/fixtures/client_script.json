@@ -2,6 +2,28 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "Job Card -Veneer Pressing",
+  "enabled": 1,
+  "modified": "2025-07-26 15:31:44.579224",
+  "module": "Eits App",
+  "name": "Layout Change",
+  "script": "frappe.ui.form.on('Job Card -Veneer Pressing', {\n\trefresh(frm) {\n\t\t// Add CSS styling to finish_date field\n\t\tfrm.fields_dict.finish_date.$wrapper.css({\n\t\t\t'padding-top': '70px'\n\t\t});\n\t\t\n\t\tfrm.fields_dict.pressing_charges.grid.wrapper.find('.grid-add-row').hide();\n\t\tfrm.fields_dict.material_sold.grid.wrapper.find('.grid-add-row').hide();\n\n\t\t\n\t\t\n\t\t\n\t\t// Alternative method using addClass if you prefer external CSS\n\t\t// frm.fields_dict.finish_date.$wrapper.addClass('custom-finish-date-padding');\n\t}\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Job Card -Veneer Pressing",
+  "enabled": 1,
+  "modified": "2025-07-25 17:56:39.119427",
+  "module": "Eits App",
+  "name": "auto calculate amount",
+  "script": "// Client Script for Job Card - Veneer Pressing DocType\r\n// This script will automatically calculate amount = no_of_sides * price\r\n\r\nfrappe.ui.form.on('Job Card -Veneer Pressing', {\r\n    refresh: function(frm) {\r\n        // Any initialization code if needed\r\n    }\r\n});\r\n\r\n// For Pressing Charges Child Table\r\nfrappe.ui.form.on('Pressing Charges', {\r\n    no_of_sides: function(frm, cdt, cdn) {\r\n        calculate_pressing_amount(frm, cdt, cdn);\r\n    },\r\n    \r\n    price: function(frm, cdt, cdn) {\r\n        calculate_pressing_amount(frm, cdt, cdn);\r\n    }\r\n});\r\n\r\n// For Material Sold Child Table\r\nfrappe.ui.form.on('Material Sold', {\r\n    no_of_sides: function(frm, cdt, cdn) {\r\n        calculate_material_amount(frm, cdt, cdn);\r\n    },\r\n    \r\n    price: function(frm, cdt, cdn) {\r\n        calculate_material_amount(frm, cdt, cdn);\r\n    }\r\n});\r\n\r\n// Function to calculate amount for Pressing Charges\r\nfunction calculate_pressing_amount(frm, cdt, cdn) {\r\n    let row = locals[cdt][cdn];\r\n    \r\n    if (row.no_of_sides && row.price) {\r\n        let amount = flt(row.no_of_sides) * flt(row.price);\r\n        frappe.model.set_value(cdt, cdn, 'amount', amount);\r\n        frm.refresh_field('custom_pressing_charges'); // Replace with your actual field name\r\n    }\r\n}\r\n\r\n// Function to calculate amount for Material Sold\r\nfunction calculate_material_amount(frm, cdt, cdn) {\r\n    let row = locals[cdt][cdn];\r\n    \r\n    if (row.no_of_sides && row.price) {\r\n        let amount = flt(row.no_of_sides) * flt(row.price);\r\n        frappe.model.set_value(cdt, cdn, 'amount', amount);\r\n        frm.refresh_field('custom_material_sold'); // Replace with your actual field name\r\n    }\r\n}\r\n\r\n// Optional: Calculate totals for the entire form\r\nfrappe.ui.form.on('Pressing Charges', {\r\n    amount: function(frm) {\r\n        calculate_total_pressing_charges(frm);\r\n    },\r\n    \r\n    pressing_charges_remove: function(frm) {\r\n        calculate_total_pressing_charges(frm);\r\n    }\r\n});\r\n\r\nfrappe.ui.form.on('Material Sold', {\r\n    amount: function(frm) {\r\n        calculate_total_material_sold(frm);\r\n    },\r\n    \r\n    material_sold_remove: function(frm) {\r\n        calculate_total_material_sold(frm);\r\n    }\r\n});\r\n\r\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Daily Work Allocation",
   "enabled": 0,
   "modified": "2025-07-12 14:38:56.874512",
@@ -272,6 +294,17 @@
   "module": "Eits App",
   "name": "Job Estimation - Create Booking Employee",
   "script": "// Client Script Configuration (to be entered in ERPNext UI)\r\n\r\n// Script Name: Job Estimation - Manual Booking Button\r\n// Document Type: Job Estimation\r\n// Script Type: Form Script\r\n\r\nfrappe.ui.form.on('JobEstimation', {\r\n    refresh: function(frm) {\r\n        // Add custom button to manually create Booking Employee records\r\n        if (frm.doc.docstatus === 1 && frm.doc.job_execution && frm.doc.job_execution.length > 0) {\r\n            frm.add_custom_button(__('Create Booking Records'), function() {\r\n                frappe.call({\r\n                    method: 'frappe.client.submit_doc',\r\n                    args: {\r\n                        doc: frm.doc\r\n                    },\r\n                    callback: function(r) {\r\n                        if (r.message) {\r\n                            frappe.msgprint(__('Booking Employee records creation triggered'));\r\n                            frm.refresh();\r\n                        }\r\n                    }\r\n                });\r\n            }, __('Actions'));\r\n        }\r\n    },\r\n    \r\n    // Validate before submit\r\n    before_submit: function(frm) {\r\n        if (frm.doc.job_execution && frm.doc.job_execution.length > 0) {\r\n            let missing_fields = [];\r\n            \r\n            frm.doc.job_execution.forEach(function(row, index) {\r\n                if (!row.employee) {\r\n                    missing_fields.push(`Row ${index + 1}: Employee is required`);\r\n                }\r\n                if (!row.date) {\r\n                    missing_fields.push(`Row ${index + 1}: Date is required`);\r\n                }\r\n            });\r\n            \r\n            if (missing_fields.length > 0) {\r\n                frappe.msgprint({\r\n                    title: __('Missing Required Fields'),\r\n                    message: missing_fields.join('<br>'),\r\n                    indicator: 'red'\r\n                });\r\n                frappe.validated = false;\r\n            }\r\n        }\r\n    }\r\n});",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Job Card -Other Services",
+  "enabled": 1,
+  "modified": "2025-07-26 15:39:06.309031",
+  "module": "Eits App",
+  "name": "Layout Change in Other",
+  "script": "frappe.ui.form.on('Job Card -Other Services', {\n\trefresh(frm) {\n\t\t// your code here\n\t\tfrm.fields_dict.finish_date.$wrapper.css({\n\t\t\t'padding-top': '70px'\n\t\t});\n\t\t\n\t\t\n\tfrm.fields_dict.services.grid.wrapper.find('.grid-add-row').hide();\n\n\t}\n})",
   "view": "Form"
  }
 ]
