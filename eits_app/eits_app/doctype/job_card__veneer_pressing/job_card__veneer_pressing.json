@@ -8,21 +8,22 @@
   "section_break_7wio",
   "amended_from",
   "date",
-  "section_break_nqwe",
+  "start_date",
+  "column_break_rcrd",
+  "finish_date",
+  "column_break_hvpx",
   "party_name",
   "property_no",
-  "column_break_btha",
   "building_name",
   "area",
-  "section_break_juqz",
-  "start_date",
-  "column_break_gsjx",
-  "finish_date",
-  "total_amount",
   "section_break_qost",
   "pressing_charges",
   "section_break_tktr",
   "material_sold",
+  "section_break_xkig",
+  "column_break_qoqk",
+  "column_break_gdlb",
+  "total_amount",
   "section_break_fiqp",
   "prepared_by",
   "approved_by",
@@ -51,10 +52,6 @@
    "label": "Date"
   },
   {
-   "fieldname": "section_break_nqwe",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "party_name",
    "fieldtype": "Data",
    "label": "Party Name"
@@ -75,17 +72,9 @@
    "label": "Area"
   },
   {
-   "fieldname": "section_break_juqz",
-   "fieldtype": "Section Break"
-  },
-  {
    "fieldname": "start_date",
    "fieldtype": "Date",
    "label": "Start Date"
-  },
-  {
-   "fieldname": "column_break_gsjx",
-   "fieldtype": "Column Break"
   },
   {
    "fieldname": "finish_date",
@@ -148,20 +137,36 @@
    "label": "A/C V No and Date"
   },
   {
-   "fieldname": "column_break_btha",
-   "fieldtype": "Column Break"
-  },
-  {
    "fieldname": "total_amount",
    "fieldtype": "Float",
    "label": "Total Amount"
+  },
+  {
+   "fieldname": "column_break_hvpx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_xkig",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_qoqk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_gdlb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_rcrd",
+   "fieldtype": "Column Break"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-25 17:51:48.362784",
+ "modified": "2025-07-26 14:37:10.777699",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Card -Veneer Pressing",
