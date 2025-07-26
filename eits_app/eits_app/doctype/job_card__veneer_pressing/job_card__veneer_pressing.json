@@ -53,8 +53,9 @@
   },
   {
    "fieldname": "party_name",
-   "fieldtype": "Data",
-   "label": "Party Name"
+   "fieldtype": "Link",
+   "label": "Party Name",
+   "options": "Customer"
   },
   {
    "fieldname": "building_name",
