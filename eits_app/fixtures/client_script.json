@@ -174,5 +174,16 @@
   "name": "add button",
   "script": "frappe.ui.form.on('Job Card -Veneer Pressing', {\r\n    refresh(frm) {\r\n        frm.add_custom_button('Create Payment', function() {\r\n            frappe.new_doc('Payment', {\r\n                date_and_time: frm.doc.date,\r\n                amount_aed: frm.doc.pressing_charges || 0,\r\n                paid_by: frm.doc.custom_customer_name\r\n            });\r\n        });\r\n    }\r\n});\r\n",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Job Card -Veneer Pressing",
+  "enabled": 1,
+  "modified": "2025-07-25 17:56:39.119427",
+  "module": "Eits App",
+  "name": "auto calculate amount",
+  "script": "// Client Script for Job Card - Veneer Pressing DocType\r\n// This script will automatically calculate amount = no_of_sides * price\r\n\r\nfrappe.ui.form.on('Job Card -Veneer Pressing', {\r\n    refresh: function(frm) {\r\n        // Any initialization code if needed\r\n    }\r\n});\r\n\r\n// For Pressing Charges Child Table\r\nfrappe.ui.form.on('Pressing Charges', {\r\n    no_of_sides: function(frm, cdt, cdn) {\r\n        calculate_pressing_amount(frm, cdt, cdn);\r\n    },\r\n    \r\n    price: function(frm, cdt, cdn) {\r\n        calculate_pressing_amount(frm, cdt, cdn);\r\n    }\r\n});\r\n\r\n// For Material Sold Child Table\r\nfrappe.ui.form.on('Material Sold', {\r\n    no_of_sides: function(frm, cdt, cdn) {\r\n        calculate_material_amount(frm, cdt, cdn);\r\n    },\r\n    \r\n    price: function(frm, cdt, cdn) {\r\n        calculate_material_amount(frm, cdt, cdn);\r\n    }\r\n});\r\n\r\n// Function to calculate amount for Pressing Charges\r\nfunction calculate_pressing_amount(frm, cdt, cdn) {\r\n    let row = locals[cdt][cdn];\r\n    \r\n    if (row.no_of_sides && row.price) {\r\n        let amount = flt(row.no_of_sides) * flt(row.price);\r\n        frappe.model.set_value(cdt, cdn, 'amount', amount);\r\n        frm.refresh_field('custom_pressing_charges'); // Replace with your actual field name\r\n    }\r\n}\r\n\r\n// Function to calculate amount for Material Sold\r\nfunction calculate_material_amount(frm, cdt, cdn) {\r\n    let row = locals[cdt][cdn];\r\n    \r\n    if (row.no_of_sides && row.price) {\r\n        let amount = flt(row.no_of_sides) * flt(row.price);\r\n        frappe.model.set_value(cdt, cdn, 'amount', amount);\r\n        frm.refresh_field('custom_material_sold'); // Replace with your actual field name\r\n    }\r\n}\r\n\r\n// Optional: Calculate totals for the entire form\r\nfrappe.ui.form.on('Pressing Charges', {\r\n    amount: function(frm) {\r\n        calculate_total_pressing_charges(frm);\r\n    },\r\n    \r\n    pressing_charges_remove: function(frm) {\r\n        calculate_total_pressing_charges(frm);\r\n    }\r\n});\r\n\r\nfrappe.ui.form.on('Material Sold', {\r\n    amount: function(frm) {\r\n        calculate_total_material_sold(frm);\r\n    },\r\n    \r\n    material_sold_remove: function(frm) {\r\n        calculate_total_material_sold(frm);\r\n    }\r\n});\r\n\r\n",
+  "view": "Form"
  }
 ]
