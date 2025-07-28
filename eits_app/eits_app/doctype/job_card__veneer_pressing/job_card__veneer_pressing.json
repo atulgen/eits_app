@@ -53,8 +53,9 @@
   },
   {
    "fieldname": "party_name",
-   "fieldtype": "Data",
-   "label": "Party Name"
+   "fieldtype": "Link",
+   "label": "Party Name",
+   "options": "Customer"
   },
   {
    "fieldname": "building_name",
@@ -166,7 +167,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-26 14:37:10.777699",
+ "modified": "2025-07-26 14:05:30.693661",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Card -Veneer Pressing",

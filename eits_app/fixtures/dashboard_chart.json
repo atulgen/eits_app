@@ -27,9 +27,6 @@
   "report_name": null,
   "roles": [
    {
-    "parent": "Project Approval Status",
-    "parentfield": "roles",
-    "parenttype": "Dashboard Chart",
     "role": "project approver"
    }
   ],

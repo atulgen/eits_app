@@ -52,8 +52,9 @@
   },
   {
    "fieldname": "party_name",
-   "fieldtype": "Data",
-   "label": "Party Name"
+   "fieldtype": "Link",
+   "label": "Party Name",
+   "options": "Customer"
   },
   {
    "fieldname": "building_name",
@@ -133,7 +134,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-25 16:56:51.618044",
+ "modified": "2025-07-26 15:15:17.534156",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Job Card -Other Services",
