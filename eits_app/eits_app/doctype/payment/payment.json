@@ -56,8 +56,10 @@
   },
   {
    "fieldname": "paid_by",
-   "fieldtype": "Data",
-   "label": "Paid By"
+   "fieldtype": "Link",
+   "label": "Paid By",
+   "link":"Customer"
+
   },
   {
    "fieldname": "paid_to",
