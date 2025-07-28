@@ -21,12 +21,20 @@ fixtures = [
         "dt": "Client Script",
         "filters": [["module", "=", "Eits App"]]
     },
+     {
+        "dt": "Workspace",
+        "filters": [["name", "in", ["EITS Account's WorkSpace"]]]
+    },
+    {
+        "dt": "Custom DocPerm",
+        "filters": [["parent", "in", ["Payment", "Job Card -Other Services","Job Card -Veneer Pressing"]]]
+    },
     "Server Script"
 ]
 # ------------------
 
 
-# 		"logo": "/assets/eits_app/logo.png",
+# 		"logo": "/assets/eits_app/logo.png",SAARE
 # 		"title": "Eits App",
 # 		"route": "/eits_app",
 # 		"has_permission": "eits_app.api.permission.has_app_permission"
