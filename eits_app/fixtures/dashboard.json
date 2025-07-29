@@ -5,6 +5,9 @@
   "charts": [
    {
     "chart": "Project Approval Status",
+    "parent": "Project Approval Dashboard",
+    "parentfield": "charts",
+    "parenttype": "Dashboard",
     "width": "Half"
    }
   ],

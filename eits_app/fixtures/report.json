@@ -23,9 +23,15 @@
   "report_type": "Script Report",
   "roles": [
    {
+    "parent": "Project Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Projects User"
    },
    {
+    "parent": "Project Summary",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Projects Manager"
    }
   ],
@@ -55,15 +61,27 @@
   "report_type": "Query Report",
   "roles": [
    {
+    "parent": "Projects Pending Approval",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Projects User"
    },
    {
+    "parent": "Projects Pending Approval",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Projects Manager"
    },
    {
+    "parent": "Projects Pending Approval",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Employee"
    },
    {
+    "parent": "Projects Pending Approval",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Administrator"
    }
   ],
@@ -93,9 +111,15 @@
   "report_type": "Script Report",
   "roles": [
    {
+    "parent": "Project wise Stock Tracking",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Projects User"
    },
    {
+    "parent": "Project wise Stock Tracking",
+    "parentfield": "roles",
+    "parenttype": "Report",
     "role": "Projects Manager"
    }
   ],
