@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-07-29 17:21:46.748373",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_ssam",
+  "amended_from",
+  "date",
+  "bill_number",
+  "amountaed",
+  "paid_by",
+  "paid_from",
+  "custom_attachments",
+  "custom_media_preview",
+  "custom_purpose_of_payment",
+  "section_break_eqlg",
+  "custom_mode_of_payment",
+  "custom_name_of_bank",
+  "custom_card_number",
+  "custom_account_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_ssam",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Receipt EITS",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "fieldname": "bill_number",
+   "fieldtype": "Int",
+   "label": "Bill Number"
+  },
+  {
+   "fieldname": "amountaed",
+   "fieldtype": "Float",
+   "label": "Amount(AED)"
+  },
+  {
+   "fieldname": "paid_by",
+   "fieldtype": "Data",
+   "label": "Paid By"
+  },
+  {
+   "fieldname": "paid_from",
+   "fieldtype": "Link",
+   "label": "Paid From",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "custom_attachments",
+   "fieldtype": "Table",
+   "label": "Attachments",
+   "options": "Image Attachments"
+  },
+  {
+   "fieldname": "custom_media_preview",
+   "fieldtype": "HTML",
+   "label": "Media Preview"
+  },
+  {
+   "fieldname": "custom_purpose_of_payment",
+   "fieldtype": "Long Text",
+   "label": "Purpose of Payment"
+  },
+  {
+   "fieldname": "section_break_eqlg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "custom_mode_of_payment",
+   "fieldtype": "Link",
+   "label": "Mode of Payment",
+   "options": "Mode of Payment"
+  },
+  {
+   "fieldname": "custom_name_of_bank",
+   "fieldtype": "Data",
+   "label": "Name of Bank"
+  },
+  {
+   "fieldname": "custom_card_number",
+   "fieldtype": "Data",
+   "label": "Card Number"
+  },
+  {
+   "fieldname": "custom_account_number",
+   "fieldtype": "Data",
+   "label": "Account Number"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2025-07-29 17:27:30.522219",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "Receipt EITS",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
