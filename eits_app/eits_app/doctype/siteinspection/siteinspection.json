@@ -148,7 +148,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Inspection Status",
-   "options": "Scheduled\nIn Progress\nCompleted\nRescheduled\nCancelled"
+   "options": "Scheduled\nIn Progress\nPending\nCompleted\nRescheduled\nCancelled"
   },
   {
    "fieldname": "column_break_bnvi",

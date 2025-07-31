@@ -1,0 +1,36 @@
+{
+ "add_total_row": 0,
+ "add_translate_data": 0,
+ "columns": [],
+ "creation": "2025-07-30 18:20:06.535232",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "json": "{}",
+ "letter_head": "Print JobEstimation",
+ "letterhead": null,
+ "modified": "2025-07-30 18:27:31.636504",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "eits payment",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "// EITS Payment Report - Image Preview Custom Script\r\n\r\nfrappe.query_reports[\"EITS Payment\"] = {\r\n    \"formatter\": function (value, row, column, data, default_formatter) {\r\n        // Check if this is the Image column\r\n        if (column.fieldname === \"image\" || column.label === \"Image (Image Attachments)\") {\r\n            if (value && value.includes('/files/')) {\r\n                // Create clickable link for image\r\n                return `<a href=\"#\" onclick=\"showImagePreview('${value}')\" style=\"color: #007bff; text-decoration: underline;\">\r\n                    ${value.split('/').pop()}\r\n                </a>`;\r\n            }\r\n        }\r\n        return default_formatter(value, row, column, data);\r\n    }\r\n};\r\n\r\n// Function to show image preview popup\r\nfunction showImagePreview(imageUrl) {\r\n    // Create modal dialog\r\n    let modal = new frappe.ui.Dialog({\r\n        title: 'Image Preview',\r\n        size: 'large',\r\n        fields: [\r\n            {\r\n                fieldtype: 'HTML',\r\n                fieldname: 'image_preview',\r\n                options: `\r\n                    <div style=\"text-align: center; padding: 20px;\">\r\n                        <img src=\"${imageUrl}\" \r\n                             style=\"max-width: 100%; max-height: 500px; border: 1px solid #ddd; border-radius: 8px;\"\r\n                             onerror=\"this.style.display='none'; this.nextElementSibling.style.display='block';\">\r\n                        <div style=\"display: none; padding: 50px; color: #999;\">\r\n                            <i class=\"fa fa-image\" style=\"font-size: 48px;\"></i><br>\r\n                            Image could not be loaded\r\n                        </div>\r\n                    </div>\r\n                `\r\n            }\r\n        ],\r\n        primary_action_label: 'Download',\r\n        primary_action: function() {\r\n            // Download image\r\n            window.open(imageUrl, '_blank');\r\n        },\r\n        secondary_action_label: 'Close'\r\n    });\r\n    \r\n    modal.show();\r\n}\r\n\r\n// Alternative: Add click handler after report loads\r\n$(document).on('page-change', function() {\r\n    setTimeout(function() {\r\n        // Add click handlers to image URLs\r\n        $('.dt-cell__content').each(function() {\r\n            let cell = $(this);\r\n            let text = cell.text().trim();\r\n            \r\n            if (text.includes('/files/') && (text.includes('.jpg') || text.includes('.jpeg') || text.includes('.png') || text.includes('.gif'))) {\r\n                cell.css({\r\n                    'color': '#007bff',\r\n                    'cursor': 'pointer',\r\n                    'text-decoration': 'underline'\r\n                }).on('click', function() {\r\n                    showImagePreview(text);\r\n                });\r\n            }\r\n        });\r\n    }, 1000);\r\n});",
+ "ref_doctype": "EITS Payment",
+ "reference_report": "",
+ "report_name": "eits payment",
+ "report_script": "// EITS Payment Report - Image Preview Custom Script\r\n\r\nfrappe.query_reports[\"EITS Payment\"] = {\r\n    \"formatter\": function (value, row, column, data, default_formatter) {\r\n        // Check if this is the Image column\r\n        if (column.fieldname === \"image\" || column.label === \"Image (Image Attachments)\") {\r\n            if (value && value.includes('/files/')) {\r\n                // Create clickable link for image\r\n                return `<a href=\"#\" onclick=\"showImagePreview('${value}')\" style=\"color: #007bff; text-decoration: underline;\">\r\n                    ${value.split('/').pop()}\r\n                </a>`;\r\n            }\r\n        }\r\n        return default_formatter(value, row, column, data);\r\n    }\r\n};\r\n\r\n// Function to show image preview popup\r\nfunction showImagePreview(imageUrl) {\r\n    // Create modal dialog\r\n    let modal = new frappe.ui.Dialog({\r\n        title: 'Image Preview',\r\n        size: 'large',\r\n        fields: [\r\n            {\r\n                fieldtype: 'HTML',\r\n                fieldname: 'image_preview',\r\n                options: `\r\n                    <div style=\"text-align: center; padding: 20px;\">\r\n                        <img src=\"${imageUrl}\" \r\n                             style=\"max-width: 100%; max-height: 500px; border: 1px solid #ddd; border-radius: 8px;\"\r\n                             onerror=\"this.style.display='none'; this.nextElementSibling.style.display='block';\">\r\n                        <div style=\"display: none; padding: 50px; color: #999;\">\r\n                            <i class=\"fa fa-image\" style=\"font-size: 48px;\"></i><br>\r\n                            Image could not be loaded\r\n                        </div>\r\n                    </div>\r\n                `\r\n            }\r\n        ],\r\n        primary_action_label: 'Download',\r\n        primary_action: function() {\r\n            // Download image\r\n            window.open(imageUrl, '_blank');\r\n        },\r\n        secondary_action_label: 'Close'\r\n    });\r\n    \r\n    modal.show();\r\n}\r\n\r\n// Alternative: Add click handler after report loads\r\n$(document).on('page-change', function() {\r\n    setTimeout(function() {\r\n        // Add click handlers to image URLs\r\n        $('.dt-cell__content').each(function() {\r\n            let cell = $(this);\r\n            let text = cell.text().trim();\r\n            \r\n            if (text.includes('/files/') && (text.includes('.jpg') || text.includes('.jpeg') || text.includes('.png') || text.includes('.gif'))) {\r\n                cell.css({\r\n                    'color': '#007bff',\r\n                    'cursor': 'pointer',\r\n                    'text-decoration': 'underline'\r\n                }).on('click', function() {\r\n                    showImagePreview(text);\r\n                });\r\n            }\r\n        });\r\n    }, 1000);\r\n});",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  },
+  {
+   "role": "Accounts User"
+  }
+ ],
+ "timeout": 0
+}
