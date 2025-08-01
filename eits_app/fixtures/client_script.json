@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "EITS Payment",
+  "enabled": 1,
+  "modified": "2025-07-31 17:41:22.548916",
+  "module": "Eits App",
+  "name": "autofill image in payment",
+  "script": "frappe.ui.form.on('EITS Payment', {\r\n    refresh: function(frm) {\r\n        // Check and copy first attachment image when form loads\r\n        copy_first_attachment_to_image(frm);\r\n    }\r\n});\r\n\r\nfrappe.ui.form.on('Attachments', {\r\n    // Trigger when a new row is added to attachments child table\r\n    custom_attachments_add: function(frm, cdt, cdn) {\r\n        copy_first_attachment_to_image(frm);\r\n    },\r\n\r\n    // Trigger when attachments child table is modified\r\n    image: function(frm, cdt, cdn) {\r\n        copy_first_attachment_to_image(frm);\r\n    },\r\n\r\n    // Trigger when a row is removed from attachments\r\n    custom_attachments_remove: function(frm, cdt, cdn) {\r\n        copy_first_attachment_to_image(frm);\r\n    }\r\n});\r\n\r\nfunction copy_first_attachment_to_image(frm) {\r\n    // Check if attachments child table exists and has entries\r\n    if (frm.doc.custom_attachments && frm.doc.custom_attachments.length > 0) {\r\n        // Find the first attachment with an image\r\n        let first_image = null;\r\n\r\n        for (let attachment of frm.doc.custom_attachments) {\r\n            if (attachment.image) {\r\n                first_image = attachment.image;\r\n                break;\r\n            }\r\n        }\r\n\r\n        // If we found an image and it's different from current custom_image\r\n        if (first_image && frm.doc.custom_img !== first_image) {\r\n            frm.set_value('custom_img', first_image);\r\n\r\n            // Optional: Show a message to user\r\n            frappe.show_alert({\r\n                message: __('First attachment image copied to Image field'),\r\n                indicator: 'green'\r\n            }, 3);\r\n        }\r\n\r\n        // If no images found in attachments, clear the custom_image field\r\n        else if (!first_image && frm.doc.custom_img) {\r\n            frm.set_value('custom_image', '');\r\n        }\r\n    }\r\n\r\n    // If no attachments exist, clear the custom_image field\r\n    else if (frm.doc.custom_img) {\r\n        frm.set_value('custom_img', '');\r\n    }\r\n}",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Job Card -Veneer Pressing",
   "enabled": 1,
   "modified": "2025-07-29 16:17:56.231022",

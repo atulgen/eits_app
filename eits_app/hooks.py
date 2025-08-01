@@ -9,6 +9,12 @@ fixtures = [
         "dt": "Dashboard",
         "filters": [["name", "in", ["Project Approval Dashboard"]]]
     },
+{
+        "dt": "Custom Field",
+        "filters": [
+            ["name", "in", ["User-custom_force_password_reset"]]
+        ]
+    },
     {
         "dt": "Dashboard Chart",
         "filters": [["name", "in", ["Project Approval Status"]]]
