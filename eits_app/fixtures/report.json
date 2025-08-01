@@ -10,117 +10,29 @@
   "is_standard": "Yes",
   "javascript": null,
   "json": null,
-  "letter_head": null,
-  "modified": "2020-05-04 19:32:53.177213",
-  "module": "Projects",
-  "name": "Project Summary",
-  "prepared_report": 0,
-  "query": null,
-  "ref_doctype": "Project",
-  "reference_report": null,
-  "report_name": "Project Summary",
-  "report_script": null,
-  "report_type": "Script Report",
-  "roles": [
-   {
-    "parent": "Project Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Projects User"
-   },
-   {
-    "parent": "Project Summary",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Projects Manager"
-   }
-  ],
-  "timeout": 0
- },
- {
-  "add_total_row": 0,
-  "add_translate_data": 0,
-  "columns": [],
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "filters": [],
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2025-07-15 15:35:24.049542",
+  "letter_head": "Print JobEstimation",
+  "modified": "2025-08-01 09:53:49.607915",
   "module": "Eits App",
-  "name": "Projects Pending Approval",
-  "prepared_report": 0,
-  "query": "SELECT \r\n    name as \"project_id:Link/Project:150\",\r\n    project_name as \"project_name::200\",\r\n    custom_approval_status as \"status:data:100\",\r\n    custom_created_from_daily_work_allocation as \"from_allocation:Link/Daily Work Allocation:180\",\r\n    owner as \"created_by::120\",\r\n    creation as \"created_on:Datetime:150\"\r\nFROM tabProject \r\nWHERE custom_approval_status = 'Draft'\r\nORDER BY creation DESC\r\n",
-  "ref_doctype": "Project",
-  "reference_report": null,
-  "report_name": "Projects Pending Approval",
-  "report_script": null,
-  "report_type": "Query Report",
-  "roles": [
-   {
-    "parent": "Projects Pending Approval",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Projects User"
-   },
-   {
-    "parent": "Projects Pending Approval",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Projects Manager"
-   },
-   {
-    "parent": "Projects Pending Approval",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Employee"
-   },
-   {
-    "parent": "Projects Pending Approval",
-    "parentfield": "roles",
-    "parenttype": "Report",
-    "role": "Administrator"
-   }
-  ],
-  "timeout": 0
- },
- {
-  "add_total_row": 0,
-  "add_translate_data": 0,
-  "columns": [],
-  "disabled": 0,
-  "docstatus": 0,
-  "doctype": "Report",
-  "filters": [],
-  "is_standard": "Yes",
-  "javascript": null,
-  "json": null,
-  "letter_head": null,
-  "modified": "2017-02-24 20:20:07.593667",
-  "module": "Projects",
-  "name": "Project wise Stock Tracking",
+  "name": "EITS Payment Image",
   "prepared_report": 0,
   "query": null,
-  "ref_doctype": "Project",
+  "ref_doctype": "EITS Payment",
   "reference_report": null,
-  "report_name": "Project wise Stock Tracking",
+  "report_name": "EITS Payment Image",
   "report_script": null,
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "Project wise Stock Tracking",
+    "parent": "EITS Payment Image",
     "parentfield": "roles",
     "parenttype": "Report",
-    "role": "Projects User"
+    "role": "System Manager"
    },
    {
-    "parent": "Project wise Stock Tracking",
+    "parent": "EITS Payment Image",
     "parentfield": "roles",
     "parenttype": "Report",
-    "role": "Projects Manager"
+    "role": "Accounts User"
    }
   ],
   "timeout": 0
