@@ -17,6 +17,10 @@ fixtures = [
         "dt": "Report",
         "filters": [["ref_doctype", "=", "Project"]]
     },
+{
+        "dt": "Report",
+        "filters": [["name", "in", ["EITS Payment Image"]]]
+    },
     {
         "dt": "Client Script",
         "filters": [["module", "=", "Eits App"]]
