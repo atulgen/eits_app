@@ -180,13 +180,13 @@
   "doctype_event": "After Insert",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2025-07-26 15:24:25.635697",
+  "modified": "2025-08-02 11:19:36.257892",
   "module": "Eits App",
   "name": "auto jc to payment",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": "Job Card -Veneer Pressing",
-  "script": "if doc.party_name and doc.date:\n    amount = 0\n    try:\n        for row in doc.pressing_charges:\n            if hasattr(row, \"amount\") and row.amount:\n                amount += row.amount or 0\n    except Exception:\n        amount = 0\n\n    payment = frappe.get_doc({\n        \"doctype\": \"Payment\",\n        \"date_and_time\": doc.date,\n        \"amount_aed\": doc.total_amount,\n        \"paid_by\": doc.party_name,\n        \"custom_job_card_refrence\": doc.name\n    })\n    payment.insert()\n",
+  "script": "if doc.party_name and doc.date:\n    payment = frappe.get_doc({\n        \"doctype\": \"Payment\",\n        \"date_and_time\": doc.date,\n        \"amount_aed\": doc.total_amount,\n        \"paid_by\": doc.party_name,\n        \"custom_job_card_refrence\": doc.name\n    })\n    payment.insert()\n",
   "script_type": "DocType Event"
  },
  {
@@ -282,6 +282,25 @@
   "rate_limit_seconds": 86400,
   "reference_doctype": "Salary Slip",
   "script": "if doc.email:\r\n    frappe.sendmail(\r\n        recipients=doc.email,\r\n        subject=f\"Salary Slip for {doc.month} {doc.fiscal_year}\",\r\n        message=f\"Dear {doc.employee_name},<br><br>Please find your salary slip attached.\",\r\n        attachments=[\r\n            frappe.attach_print(\"Salary Slip\", doc.name, file_name=f\"Salary_Slip_{doc.month}_{doc.fiscal_year}.pdf\")\r\n        ]\r\n    )\r\n",
+  "script_type": "DocType Event"
+ },
+ {
+  "allow_guest": 0,
+  "api_method": null,
+  "cron_format": null,
+  "disabled": 0,
+  "docstatus": 0,
+  "doctype": "Server Script",
+  "doctype_event": "After Insert",
+  "enable_rate_limit": 0,
+  "event_frequency": "All",
+  "modified": "2025-08-02 11:12:32.900809",
+  "module": "Eits App",
+  "name": "flag creation for user",
+  "rate_limit_count": 5,
+  "rate_limit_seconds": 86400,
+  "reference_doctype": "User",
+  "script": "if doc.email:\r\n    usersetting = frappe.get_doc({\r\n        \"doctype\": \"User Settings\",\r\n        \"user\":doc.email\r\n    })\r\n    usersetting.insert()\r\n",
   "script_type": "DocType Event"
  }
 ]
