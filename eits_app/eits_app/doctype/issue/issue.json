@@ -87,7 +87,7 @@
    "label": "Customer",
    "oldfieldname": "customer",
    "oldfieldtype": "Link",
-   "options": "Customer",
+   "options": "User",
    "print_hide": 1,
    "search_index": 1
   },
@@ -391,7 +391,7 @@
  "icon": "fa fa-ticket",
  "idx": 7,
  "links": [],
- "modified": "2025-08-01 15:19:59.470430",
+ "modified": "2025-08-02 10:01:31.409934",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Issue",
