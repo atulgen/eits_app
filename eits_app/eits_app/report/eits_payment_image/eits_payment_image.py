@@ -85,9 +85,16 @@ def get_columns():
         },
         {
             "fieldname": "view_images",
-            "label": _("Actions"),
+            "label": _("View Images"),
             "fieldtype": "Data",
             "width": 130,
+            "align": "center"
+        },
+        {
+            "fieldname": "submit_action",
+            "label": _("Submit"),
+            "fieldtype": "Data",
+            "width": 120,
             "align": "center"
         }
     ]
@@ -109,13 +116,15 @@ def get_data(filters):
             ep.paid_by,
             ep.paid_to,
             ep.custom_mode_of_payment,
+            ep.docstatus,
             COUNT(CASE 
                 WHEN ca.image IS NOT NULL 
                 AND ca.image != '' 
                 AND ca.image != '/files/' 
                 THEN 1 
             END) as image_count,
-            ep.name as view_images
+            ep.name as view_images,
+            ep.name as submit_action
         FROM `tabEITS Payment` ep
         LEFT JOIN `tabImage Attachments` ca 
             ON ca.parent = ep.name 
@@ -131,7 +140,8 @@ def get_data(filters):
             ep.amountaed, 
             ep.paid_by, 
             ep.paid_to, 
-            ep.custom_mode_of_payment
+            ep.custom_mode_of_payment,
+            ep.docstatus
         ORDER BY 
             ep.date DESC, 
             ep.creation DESC
@@ -154,6 +164,14 @@ def get_data(filters):
             row['view_images'] = "View Images"
         else:
             row['view_images'] = "No Images"
+        
+        # Format submit action based on docstatus
+        if row.get('docstatus') == 0:  # Draft
+            row['submit_action'] = "Submit"
+        elif row.get('docstatus') == 1:  # Submitted
+            row['submit_action'] = "Submitted"
+        else:  # Cancelled
+            row['submit_action'] = "Cancelled"
     
     return data
 
@@ -203,6 +221,88 @@ def get_conditions(filters):
         """
     
     return conditions
+
+# ADD THIS NEW METHOD FOR SUBMITTING PAYMENT
+@frappe.whitelist()
+def submit_payment(payment_id):
+    """
+    Server method to submit a payment record
+    """
+    try:
+        # Check if payment exists
+        if not frappe.db.exists("EITS Payment", payment_id):
+            frappe.throw(_("Payment record not found"))
+        
+        # Check if user has write permission
+        if not frappe.has_permission("EITS Payment", "write", payment_id):
+            frappe.throw(_("You don't have permission to submit this payment record"))
+        
+        # Get the document
+        doc = frappe.get_doc("EITS Payment", payment_id)
+        
+        # Check if already submitted
+        if doc.docstatus == 1:
+            frappe.throw(_("Payment is already submitted"))
+        
+        # Check if cancelled
+        if doc.docstatus == 2:
+            frappe.throw(_("Cannot submit a cancelled payment"))
+        
+        # Submit the document
+        doc.submit()
+        
+        frappe.db.commit()
+        
+        return {
+            "success": True,
+            "message": _("Payment {0} has been submitted successfully").format(payment_id),
+            "docstatus": doc.docstatus
+        }
+        
+    except Exception as e:
+        frappe.db.rollback()
+        frappe.log_error(frappe.get_traceback(), "Error in submit_payment")
+        frappe.throw(_("Error submitting payment: {0}").format(str(e)))
+
+# ADD THIS NEW METHOD FOR FETCHING IMAGES
+@frappe.whitelist()
+def get_payment_images(payment_id):
+    """
+    Server method to fetch images for a specific payment
+    This bypasses permission issues by using direct SQL query
+    """
+    try:
+        # Verify the payment exists and user has access
+        if not frappe.db.exists("EITS Payment", payment_id):
+            frappe.throw(_("Payment record not found"))
+        
+        # Check if user has read permission for EITS Payment
+        if not frappe.has_permission("EITS Payment", "read", payment_id):
+            frappe.throw(_("You don't have permission to access this payment record"))
+        
+        # Fetch images using direct SQL query
+        images = frappe.db.sql("""
+            SELECT 
+                name,
+                image,
+                remarks,
+                idx
+            FROM `tabImage Attachments`
+            WHERE 
+                parent = %s 
+                AND parenttype = 'EITS Payment'
+                AND docstatus != 2
+                AND image IS NOT NULL 
+                AND image != '' 
+                AND image != '/files/'
+            ORDER BY idx ASC
+        """, (payment_id,), as_dict=True)
+        
+        return images
+        
+    except Exception as e:
+        frappe.log_error(frappe.get_traceback(), "Error in get_payment_images")
+        frappe.throw(_("Error fetching images: {0}").format(str(e)))
 
 # Optional: Add a function to get summary data
 def get_chart_data(data, filters):
