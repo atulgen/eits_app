@@ -19,16 +19,16 @@
   {
    "fieldname": "area",
    "fieldtype": "Link",
-   "options": "UAE Area",
    "in_list_view": 1,
    "label": "Area",
+   "options": "UAE Area",
    "reqd": 1
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-08-04 12:10:21.928326",
+ "modified": "2025-08-04 14:52:09.539056",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "UAE Community",
