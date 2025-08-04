@@ -32,20 +32,11 @@
    "label": "Area Code",
    "unique": 1
   },
-  {
-   "fieldname": "arabic_name",
+  {   "fieldname": "arabic_name",
    "fieldtype": "Data",
    "label": "Arabic Name"
   },
-  {
-   "fieldname": "city",
-   "fieldtype": "Link",
-   "label": "City",
-   "options": "UAE City",
-   "reqd": 1
-  },
-  {
-   "fetch_from": "city.emirate",
+    {
    "fieldname": "emirate",
    "fieldtype": "Link",
    "label": "Emirate",
