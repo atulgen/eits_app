@@ -28,6 +28,14 @@ fixtures = [
         "filters": [["name", "in", ["EITS Payment Image"]]]
     },
     {
+        "dt": "Report",
+        "filters": [["name", "in", ["EITS Receipt Image"]]]
+    },
+    {
+        "dt": "Report",
+        "filters": [["name", "in", ["EITS Receipt Report"]]]
+    },
+    {
         "dt": "Client Script",
         "filters": [["module", "=", "Eits App"]]
     },
