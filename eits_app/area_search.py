@@ -1,35 +1,50 @@
 import frappe
 
 @frappe.whitelist(allow_guest=False)
-def search_uae_areas(area_name=None):
+def search_uae_areas(area_name=None, emirate=None):
     """
-    Simple UAE Area search by area_name
+    Enhanced UAE Area search by area_name and/or emirate
     Args:
         area_name: Area name to search (partial match)
+        emirate: Emirate to filter by (partial match)
     Returns:
-        List of matching UAE areas
+        List of matching UAE areas with emirate information
     """
     try:
-        # Check if search parameter is provided
-        if not area_name:
+        # Check if at least one search parameter is provided
+        if not area_name and not emirate:
             return {
                 "status": "error",
-                "message": "Please provide area name to search",
+                "message": "Please provide area name or emirate to search",
                 "data": []
             }
+
+        # Build dynamic query based on provided parameters
+        conditions = []
+        params = []
         
-        # Simple query with area_name field
-        query = """
+        if area_name:
+            conditions.append("area_name LIKE %s")
+            params.append(f"%{area_name}%")
+        
+        if emirate:
+            conditions.append("emirate LIKE %s")
+            params.append(f"%{emirate}%")
+        
+        where_clause = " AND ".join(conditions)
+        
+        query = f"""
             SELECT
                 name,
-                area_name
+                area_name,
+                emirate
             FROM `tabUAE Area`
-            WHERE area_name LIKE %s
-            ORDER BY area_name
+            WHERE {where_clause}
+            ORDER BY emirate, area_name
             LIMIT 50
         """
         
-        areas = frappe.db.sql(query, [f"%{area_name}%"], as_dict=True)
+        areas = frappe.db.sql(query, params, as_dict=True)
         
         return {
             "status": "success",
