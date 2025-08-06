@@ -11,28 +11,34 @@
   "javascript": null,
   "json": null,
   "letter_head": "Print JobEstimation",
-  "modified": "2025-08-01 09:53:49.607915",
+  "modified": "2025-08-05 10:46:22.486625",
   "module": "Eits App",
-  "name": "EITS Payment Image",
+  "name": "Eits Receipt Report",
   "prepared_report": 0,
   "query": null,
-  "ref_doctype": "EITS Payment",
+  "ref_doctype": "Receipt EITS",
   "reference_report": null,
-  "report_name": "EITS Payment Image",
+  "report_name": "Eits Receipt Report",
   "report_script": null,
   "report_type": "Script Report",
   "roles": [
    {
-    "parent": "EITS Payment Image",
+    "parent": "Eits Receipt Report",
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "System Manager"
    },
    {
-    "parent": "EITS Payment Image",
+    "parent": "Eits Receipt Report",
     "parentfield": "roles",
     "parenttype": "Report",
     "role": "Accounts User"
+   },
+   {
+    "parent": "Eits Receipt Report",
+    "parentfield": "roles",
+    "parenttype": "Report",
+    "role": "Accounts Manager"
    }
   ],
   "timeout": 0
