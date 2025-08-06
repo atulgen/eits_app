@@ -1,4 +1,25 @@
 # import frappe
+# import re
+
+# def build_phone_search_condition(field_name, search_phone):
+#     """
+#     Build SQL condition for phone number search that handles various formats
+#     """
+#     if not search_phone:
+#         return None, []
+    
+#     # Create condition that will match phone numbers in different formats
+#     condition = f"""(
+#         {field_name} LIKE %s OR 
+#         REPLACE(REPLACE(REPLACE(REPLACE(REPLACE({field_name}, ' ', ''), '-', ''), '(', ''), ')', ''), '+', '') LIKE %s
+#     )"""
+    
+#     # Normalize search phone for second condition
+#     normalized_search = re.sub(r'[^\d]', '', str(search_phone))
+    
+#     values = [f"%{search_phone}%", f"%{normalized_search}%"]
+    
+#     return condition, values
 
 # @frappe.whitelist(allow_guest=False)
 # def search_site_addresses(custom_emirate=None, custom_area=None, custom_community=None, 
@@ -166,18 +187,27 @@
 #         conditions.append("custom_property_number LIKE %s")
 #         values.append(f"%{custom_property_number}%")
     
-#     # Contact fields in Site Address
+#     # Enhanced phone number search for Site Address
 #     if custom_customer_phone_number:
-#         conditions.append("custom_customer_phone_number LIKE %s")
-#         values.append(f"%{custom_customer_phone_number}%")
+#         phone_condition, phone_values = build_phone_search_condition(
+#             "custom_customer_phone_number", custom_customer_phone_number
+#         )
+#         if phone_condition:
+#             conditions.append(phone_condition)
+#             values.extend(phone_values)
     
+#     if custom_lead_phone_number:
+#         phone_condition, phone_values = build_phone_search_condition(
+#             "custom_lead_phone_number", custom_lead_phone_number
+#         )
+#         if phone_condition:
+#             conditions.append(phone_condition)
+#             values.extend(phone_values)
+    
+#     # Email fields (unchanged)
 #     if custom_customer_email:
 #         conditions.append("custom_customer_email LIKE %s")
 #         values.append(f"%{custom_customer_email}%")
-    
-#     if custom_lead_phone_number:
-#         conditions.append("custom_lead_phone_number LIKE %s")
-#         values.append(f"%{custom_lead_phone_number}%")
     
 #     if custom_lead_email:
 #         conditions.append("custom_lead_email LIKE %s")
@@ -226,9 +256,12 @@
 #         customer_conditions = []
 #         customer_values = []
         
+#         # Enhanced phone number search for Customer table
 #         if phone_number:
-#             customer_conditions.append("mobile_no LIKE %s")
-#             customer_values.append(f"%{phone_number}%")
+#             phone_condition, phone_values = build_phone_search_condition("mobile_no", phone_number)
+#             if phone_condition:
+#                 customer_conditions.append(phone_condition)
+#                 customer_values.extend(phone_values)
         
 #         if email:
 #             customer_conditions.append("email_id LIKE %s")
@@ -288,9 +321,12 @@
 #         lead_conditions = []
 #         lead_values = []
         
+#         # Enhanced phone number search for Lead table
 #         if phone_number:
-#             lead_conditions.append("mobile_no LIKE %s")
-#             lead_values.append(f"%{phone_number}%")
+#             phone_condition, phone_values = build_phone_search_condition("mobile_no", phone_number)
+#             if phone_condition:
+#                 lead_conditions.append(phone_condition)
+#                 lead_values.extend(phone_values)
         
 #         if email:
 #             lead_conditions.append("email_id LIKE %s")
@@ -325,7 +361,7 @@
 #                 FROM `tabSite Address`
 #                 WHERE custom_lead_name = %s
 #             """
-#             lead_sites = frappe.db.sql(site_query, [lead['name']], as_dict=1)
+#             lead_sites = frappe.db.sql(lead_query, [lead['name']], as_dict=1)
             
 #             # Add search method indicator
 #             for site in lead_sites:
@@ -424,18 +460,27 @@
 #             conditions.append("sa.custom_property_number LIKE %s")
 #             values.append(f"%{custom_property_number}%")
         
-#         # Contact fields
+#         # Enhanced phone number search for detailed search
 #         if custom_customer_phone_number:
-#             conditions.append("sa.custom_customer_phone_number LIKE %s")
-#             values.append(f"%{custom_customer_phone_number}%")
+#             phone_condition, phone_values = build_phone_search_condition(
+#                 "sa.custom_customer_phone_number", custom_customer_phone_number
+#             )
+#             if phone_condition:
+#                 conditions.append(phone_condition)
+#                 values.extend(phone_values)
         
+#         if custom_lead_phone_number:
+#             phone_condition, phone_values = build_phone_search_condition(
+#                 "sa.custom_lead_phone_number", custom_lead_phone_number
+#             )
+#             if phone_condition:
+#                 conditions.append(phone_condition)
+#                 values.extend(phone_values)
+        
+#         # Email fields (unchanged)
 #         if custom_customer_email:
 #             conditions.append("sa.custom_customer_email LIKE %s")
 #             values.append(f"%{custom_customer_email}%")
-        
-#         if custom_lead_phone_number:
-#             conditions.append("sa.custom_lead_phone_number LIKE %s")
-#             values.append(f"%{custom_lead_phone_number}%")
         
 #         if custom_lead_email:
 #             conditions.append("sa.custom_lead_email LIKE %s")
@@ -542,8 +587,6 @@
 #         }
 
 
-
-
 import frappe
 import re
 
@@ -571,10 +614,11 @@ def build_phone_search_condition(field_name, search_phone):
 def search_site_addresses(custom_emirate=None, custom_area=None, custom_community=None, 
                          custom_street_name=None, custom_property_number=None, 
                          custom_customer_phone_number=None, custom_customer_email=None,
-                         custom_lead_phone_number=None, custom_lead_email=None):
+                         custom_lead_phone_number=None, custom_lead_email=None,
+                         customer_name=None, lead_name=None, custom_lead_customer_name=None):
     """
     Comprehensive site address search by any field using AND logic
-    Searches both Site Address table and Customer/Lead tables for phone/email
+    Now includes customer name, lead name, and lead customer name search
     
     Args:
         custom_emirate: UAE Emirate to search (partial match)
@@ -586,6 +630,9 @@ def search_site_addresses(custom_emirate=None, custom_area=None, custom_communit
         custom_customer_email: Customer email to search (partial match)
         custom_lead_phone_number: Lead phone number to search (partial match)
         custom_lead_email: Lead email to search (partial match)
+        customer_name: Customer name to search (partial match)
+        lead_name: Lead name to search (partial match)  
+        custom_lead_customer_name: Lead Customer name to search (partial match)
     
     Returns:
         List of matching site addresses with integrated customer/lead details
@@ -598,23 +645,24 @@ def search_site_addresses(custom_emirate=None, custom_area=None, custom_communit
             custom_emirate, custom_area, custom_community, 
             custom_street_name, custom_property_number,
             custom_customer_phone_number, custom_customer_email,
-            custom_lead_phone_number, custom_lead_email
+            custom_lead_phone_number, custom_lead_email,
+            customer_name, lead_name, custom_lead_customer_name
         )
         
-        # Method 2: Search by phone/email in Customer/Lead tables
+        # Method 2: Search by phone/email/name in Customer/Lead tables
         site_addresses_indirect = []
         
-        # Search customers by phone/email and get their site addresses
-        if custom_customer_phone_number or custom_customer_email:
+        # Search customers by phone/email/name and get their site addresses
+        if custom_customer_phone_number or custom_customer_email or customer_name:
             customer_sites = search_by_customer_contact(
-                custom_customer_phone_number, custom_customer_email
+                custom_customer_phone_number, custom_customer_email, customer_name
             )
             site_addresses_indirect.extend(customer_sites)
         
-        # Search leads by phone/email and get their site addresses  
-        if custom_lead_phone_number or custom_lead_email:
+        # Search leads by phone/email/name and get their site addresses  
+        if custom_lead_phone_number or custom_lead_email or lead_name:
             lead_sites = search_by_lead_contact(
-                custom_lead_phone_number, custom_lead_email
+                custom_lead_phone_number, custom_lead_email, lead_name
             )
             site_addresses_indirect.extend(lead_sites)
         
@@ -637,7 +685,8 @@ def search_site_addresses(custom_emirate=None, custom_area=None, custom_communit
                 custom_emirate, custom_area, custom_community, 
                 custom_street_name, custom_property_number,
                 custom_customer_phone_number, custom_customer_email,
-                custom_lead_phone_number, custom_lead_email
+                custom_lead_phone_number, custom_lead_email,
+                customer_name, lead_name, custom_lead_customer_name
             ])
             
             if not has_params:
@@ -673,6 +722,7 @@ def search_site_addresses(custom_emirate=None, custom_area=None, custom_communit
                 "custom_customer_email": site_address.get('custom_customer_email'),
                 "custom_lead_phone_number": site_address.get('custom_lead_phone_number'),
                 "custom_lead_email": site_address.get('custom_lead_email'),
+                "custom_lead_customer_name": site_address.get('custom_lead_customer_name'),
                 
                 # Customer details (if exists)
                 "customer_details": customer_info,
@@ -707,8 +757,9 @@ def search_site_addresses(custom_emirate=None, custom_area=None, custom_communit
 def search_site_addresses_direct(custom_emirate=None, custom_area=None, custom_community=None, 
                                custom_street_name=None, custom_property_number=None,
                                custom_customer_phone_number=None, custom_customer_email=None,
-                               custom_lead_phone_number=None, custom_lead_email=None):
-    """Search directly in Site Address table"""
+                               custom_lead_phone_number=None, custom_lead_email=None,
+                               customer_name=None, lead_name=None, custom_lead_customer_name=None):
+    """Search directly in Site Address table with name searches"""
     conditions = []
     values = []
     
@@ -750,7 +801,7 @@ def search_site_addresses_direct(custom_emirate=None, custom_area=None, custom_c
             conditions.append(phone_condition)
             values.extend(phone_values)
     
-    # Email fields (unchanged)
+    # Email fields
     if custom_customer_email:
         conditions.append("custom_customer_email LIKE %s")
         values.append(f"%{custom_customer_email}%")
@@ -758,6 +809,31 @@ def search_site_addresses_direct(custom_emirate=None, custom_area=None, custom_c
     if custom_lead_email:
         conditions.append("custom_lead_email LIKE %s")
         values.append(f"%{custom_lead_email}%")
+    
+    # NEW: Direct Lead Customer Name search (Data field)
+    if custom_lead_customer_name:
+        conditions.append("custom_lead_customer_name LIKE %s")
+        values.append(f"%{custom_lead_customer_name}%")
+    
+    # NEW: Customer Name search via JOIN
+    if customer_name:
+        conditions.append("""
+            custom_customer_ IN (
+                SELECT name FROM `tabCustomer` 
+                WHERE customer_name LIKE %s
+            )
+        """)
+        values.append(f"%{customer_name}%")
+    
+    # NEW: Lead Name search via JOIN
+    if lead_name:
+        conditions.append("""
+            custom_lead_name IN (
+                SELECT name FROM `tabLead` 
+                WHERE lead_name LIKE %s
+            )
+        """)
+        values.append(f"%{lead_name}%")
     
     if not conditions:
         return []
@@ -777,7 +853,8 @@ def search_site_addresses_direct(custom_emirate=None, custom_area=None, custom_c
             custom_customer_phone_number,
             custom_customer_email,
             custom_lead_phone_number,
-            custom_lead_email
+            custom_lead_email,
+            custom_lead_customer_name
         FROM `tabSite Address` 
         WHERE ({where_clause})
         ORDER BY custom_emirate, custom_area, custom_community
@@ -793,9 +870,9 @@ def search_site_addresses_direct(custom_emirate=None, custom_area=None, custom_c
     return results
 
 
-def search_by_customer_contact(phone_number=None, email=None):
-    """Search site addresses by customer phone/email from Customer table"""
-    if not phone_number and not email:
+def search_by_customer_contact(phone_number=None, email=None, customer_name=None):
+    """Search site addresses by customer phone/email/name from Customer table"""
+    if not phone_number and not email and not customer_name:
         return []
     
     try:
@@ -812,6 +889,11 @@ def search_by_customer_contact(phone_number=None, email=None):
         if email:
             customer_conditions.append("email_id LIKE %s")
             customer_values.append(f"%{email}%")
+        
+        # NEW: Customer name search
+        if customer_name:
+            customer_conditions.append("customer_name LIKE %s")
+            customer_values.append(f"%{customer_name}%")
         
         customer_where = " OR ".join(customer_conditions)
         customer_query = f"""
@@ -838,7 +920,8 @@ def search_by_customer_contact(phone_number=None, email=None):
                     custom_customer_phone_number,
                     custom_customer_email,
                     custom_lead_phone_number,
-                    custom_lead_email
+                    custom_lead_email,
+                    custom_lead_customer_name
                 FROM `tabSite Address`
                 WHERE custom_customer_ = %s
             """
@@ -858,9 +941,9 @@ def search_by_customer_contact(phone_number=None, email=None):
         return []
 
 
-def search_by_lead_contact(phone_number=None, email=None):
-    """Search site addresses by lead phone/email from Lead table"""
-    if not phone_number and not email:
+def search_by_lead_contact(phone_number=None, email=None, lead_name=None):
+    """Search site addresses by lead phone/email/name from Lead table"""
+    if not phone_number and not email and not lead_name:
         return []
     
     try:
@@ -877,6 +960,11 @@ def search_by_lead_contact(phone_number=None, email=None):
         if email:
             lead_conditions.append("email_id LIKE %s")
             lead_values.append(f"%{email}%")
+        
+        # NEW: Lead name search
+        if lead_name:
+            lead_conditions.append("lead_name LIKE %s")
+            lead_values.append(f"%{lead_name}%")
         
         lead_where = " OR ".join(lead_conditions)
         lead_query = f"""
@@ -903,7 +991,8 @@ def search_by_lead_contact(phone_number=None, email=None):
                     custom_customer_phone_number,
                     custom_customer_email,
                     custom_lead_phone_number,
-                    custom_lead_email
+                    custom_lead_email,
+                    custom_lead_customer_name
                 FROM `tabSite Address`
                 WHERE custom_lead_name = %s
             """
@@ -971,14 +1060,16 @@ def get_customer_lead_data(site_address):
     return customer_info, lead_info
 
 
-# Alternative method for even more detailed customer/lead info
+# Enhanced detailed search method with name searches
 @frappe.whitelist(allow_guest=False)
 def search_site_addresses_detailed(custom_emirate=None, custom_area=None, custom_community=None, 
                                  custom_street_name=None, custom_property_number=None, 
                                  custom_customer_phone_number=None, custom_customer_email=None,
-                                 custom_lead_phone_number=None, custom_lead_email=None):
+                                 custom_lead_phone_number=None, custom_lead_email=None,
+                                 customer_name=None, lead_name=None, custom_lead_customer_name=None):
     """
     Enhanced site address search with detailed customer/lead information using JOINs
+    Now includes customer name, lead name, and lead customer name search
     """
     try:
         # Build conditions for search
@@ -1023,7 +1114,7 @@ def search_site_addresses_detailed(custom_emirate=None, custom_area=None, custom
                 conditions.append(phone_condition)
                 values.extend(phone_values)
         
-        # Email fields (unchanged)
+        # Email fields
         if custom_customer_email:
             conditions.append("sa.custom_customer_email LIKE %s")
             values.append(f"%{custom_customer_email}%")
@@ -1031,6 +1122,19 @@ def search_site_addresses_detailed(custom_emirate=None, custom_area=None, custom
         if custom_lead_email:
             conditions.append("sa.custom_lead_email LIKE %s")
             values.append(f"%{custom_lead_email}%")
+        
+        # NEW: Name search conditions
+        if custom_lead_customer_name:
+            conditions.append("sa.custom_lead_customer_name LIKE %s")
+            values.append(f"%{custom_lead_customer_name}%")
+        
+        if customer_name:
+            conditions.append("c.customer_name LIKE %s")
+            values.append(f"%{customer_name}%")
+        
+        if lead_name:
+            conditions.append("l.lead_name LIKE %s")
+            values.append(f"%{lead_name}%")
         
         if not conditions:
             return {
@@ -1055,6 +1159,7 @@ def search_site_addresses_detailed(custom_emirate=None, custom_area=None, custom
                 sa.custom_customer_email,
                 sa.custom_lead_phone_number,
                 sa.custom_lead_email,
+                sa.custom_lead_customer_name,
                 sa.custom_customer_,
                 sa.custom_lead_name,
                 
@@ -1097,6 +1202,7 @@ def search_site_addresses_detailed(custom_emirate=None, custom_area=None, custom
                 "custom_customer_email": row.get('custom_customer_email'),
                 "custom_lead_phone_number": row.get('custom_lead_phone_number'),
                 "custom_lead_email": row.get('custom_lead_email'),
+                "custom_lead_customer_name": row.get('custom_lead_customer_name'),
                 
                 "customer_details": {
                     "name": row.get('custom_customer_'),
