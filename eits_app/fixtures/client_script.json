@@ -372,5 +372,16 @@
   "name": "combined address in site address",
   "script": "frappe.ui.form.on('Site Address', {\r\n    refresh: function(frm) {\r\n        set_combined_address(frm);\r\n    },\r\n\r\n    custom_emirate: function(frm) {\r\n        set_combined_address(frm);\r\n    },\r\n\r\n    custom_area: function(frm) {\r\n        set_combined_address(frm);\r\n    },\r\n\r\n    custom_community: function(frm) {\r\n        set_combined_address(frm);\r\n    },\r\n\r\n    custom_street_name: function(frm) {\r\n        set_combined_address(frm);\r\n    },\r\n\r\n    custom_property_number: function(frm) {\r\n        set_combined_address(frm);\r\n    }\r\n});\r\n\r\nfunction set_combined_address(frm) {\r\n    const emirate = frm.doc.custom_emirate || '';\r\n    const area = frm.doc.custom_area || '';\r\n    const community = frm.doc.custom_community || '';\r\n    const street = frm.doc.custom_street_name || '';\r\n    const prop = frm.doc.custom_property_number || '';\r\n\r\n    // Join non-empty parts with commas\r\n    const parts = [emirate, area, community, street, prop].filter(Boolean);\r\n    const combined = parts.join(', ');\r\n\r\n    frm.set_value('custom_combined_address', combined);\r\n}\r\n",
   "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Lead",
+  "enabled": 1,
+  "modified": "2025-08-06 13:25:45.093910",
+  "module": "Eits App",
+  "name": "lead address filters",
+  "script": "frappe.ui.form.on('Lead', {\r\n    custom_emirate: function (frm) {\r\n        // Filter Area based on selected Emirate\r\n        frm.set_query('custom_area', function () {\r\n            return {\r\n                filters: {\r\n                    emirate: frm.doc.custom_emirate\r\n                }\r\n            };\r\n        });\r\n\r\n        // Clear Area and Community if Emirate is changed\r\n        frm.set_value('custom_area', null);\r\n        frm.set_value('custom_community', null);\r\n    },\r\n\r\n    custom_area: function (frm) {\r\n        // Filter Community based on selected Area\r\n        frm.set_query('custom_community', function () {\r\n            return {\r\n                filters: {\r\n                    area: frm.doc.custom_area\r\n                }\r\n            };\r\n        });\r\n\r\n        // Clear Community if Area is changed\r\n        frm.set_value('custom_community', null);\r\n    }\r\n});\r\n",
+  "view": "Form"
  }
 ]
