@@ -2,6 +2,17 @@
  {
   "docstatus": 0,
   "doctype": "Client Script",
+  "dt": "Site Address",
+  "enabled": 1,
+  "modified": "2025-08-04 16:51:34.981321",
+  "module": "Eits App",
+  "name": "FILTER ON EMIRATE",
+  "script": "frappe.ui.form.on('Site Address', {\r\n    custom_emirate: function (frm) {\r\n        // Filter Area based on selected Emirate\r\n        frm.set_query('custom_area', function () {\r\n            return {\r\n                filters: {\r\n                    emirate: frm.doc.custom_emirate\r\n                }\r\n            };\r\n        });\r\n\r\n        // Clear Area and Community if Emirate is changed\r\n        frm.set_value('custom_area', null);\r\n        frm.set_value('custom_community', null);\r\n    },\r\n\r\n    custom_area: function (frm) {\r\n        // Filter Community based on selected Area\r\n        frm.set_query('custom_community', function () {\r\n            return {\r\n                filters: {\r\n                    area: frm.doc.custom_area\r\n                }\r\n            };\r\n        });\r\n\r\n        // Clear Community if Area is changed\r\n        frm.set_value('custom_community', null);\r\n    }\r\n});\r\n",
+  "view": "Form"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
   "dt": "Address",
   "enabled": 1,
   "modified": "2025-08-04 10:06:37.907930",
