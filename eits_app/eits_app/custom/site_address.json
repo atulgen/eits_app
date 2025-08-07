@@ -858,7 +858,7 @@
    "property": "autoname",
    "property_type": "Data",
    "row_name": null,
-   "value": "format:{custom_customer_}-{custom_property_number},{custom_street_name},{custom_community},{custom_area},{custom_emirate}"
+   "value": "format:{custom_customer_}{custom_lead_customer_name}-{custom_property_number},{custom_street_name},{custom_community},{custom_area},{custom_emirate}"
   },
   {
    "_assign": null,
