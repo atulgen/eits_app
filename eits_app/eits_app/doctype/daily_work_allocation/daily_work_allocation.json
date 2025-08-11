@@ -4,13 +4,6 @@
  "creation": "2025-07-11 10:47:17.891243",
  "doctype": "DocType",
  "engine": "InnoDB",
- "field_order": [
-  "section_break_vbwf",
-  "amended_from",
-  "employee_name",
-  "column_break_ggfl",
-  "date"
- ],
  "fields": [
   {
    "fieldname": "section_break_vbwf",
@@ -27,6 +20,12 @@
    "search_index": 1
   },
   {
+   "fieldname": "employee_name",
+   "fieldtype": "Link",
+   "label": "Employee Name",
+   "options": "Employee"
+  },
+  {
    "fieldname": "column_break_ggfl",
    "fieldtype": "Column Break"
   },
@@ -35,19 +34,13 @@
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
-  },
-  {
-   "fieldname": "employee_name",
-   "fieldtype": "Link",
-   "label": "Employee Name",
-   "options": "Employee"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2025-07-11 10:49:54.392306",
+ "modified": "2025-08-11 14:30:00.000000",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "Daily Work Allocation",
