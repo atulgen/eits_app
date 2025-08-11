@@ -5,7 +5,7 @@ from frappe import _
 @frappe.whitelist()
 def get_employee_availability(date, start_time=None, end_time=None):
     """
-    Get employee availability for a specific date
+    Get user availability for a specific date
     
     Args:
         date: Date to check availability (YYYY-MM-DD format)
@@ -13,57 +13,76 @@ def get_employee_availability(date, start_time=None, end_time=None):
         end_time: Optional end time to filter (HH:MM format)
     
     Returns:
-        List of employees with their availability slots
+        List of users with their availability slots
     """
     try:
         # Validate date format
         selected_date = datetime.strptime(date, '%Y-%m-%d').date()
         
-        # Get all active employees
-        employees = frappe.get_all('Employee', 
-            filters={'status': 'Active'}, 
-            fields=['name', 'employee_name', 'department']
+        # Get all enabled users with EITS_Site_Inspector role
+        users_with_role = frappe.get_all('Has Role',
+            filters={'role': 'EITS_Site_Inspector'},
+            fields=['parent'],
+            distinct=True
         )
         
-        employee_availability = []
+        user_ids = [user['parent'] for user in users_with_role]
         
-        for employee in employees:
-            availability = get_employee_time_slots(employee['name'], selected_date)
-            employee_availability.append({
-                'employee_id': employee['name'],
-                'employee_name': employee['employee_name'],
-                'department': employee['department'],
+        if not user_ids:
+            return {
+                'status': 'success',
+                'data': [],
+                'message': f'No users found with EITS_Site_Inspector role for {date}'
+            }
+        
+        users = frappe.get_all('User', 
+            filters={
+                'enabled': 1, 
+                'user_type': 'System User',
+                'name': ['in', user_ids]
+            }, 
+            fields=['name', 'full_name', 'email']
+        )
+        
+        user_availability = []
+        
+        for user in users:
+            availability = get_user_time_slots(user['name'], selected_date)
+            user_availability.append({
+                'user_id': user['name'],
+                'user_name': user['full_name'] or user['email'],
+                'email': user['email'],
                 'date': date,
                 'availability': availability
             })
         
         return {
             'status': 'success',
-            'data': employee_availability,
-            'message': f'Employee availability for {date}'
+            'data': user_availability,
+            'message': f'User availability for {date}'
         }
         
     except ValueError as e:
         frappe.throw(_('Invalid date format. Please use YYYY-MM-DD format'))
     except Exception as e:
-        frappe.log_error(frappe.get_traceback(), 'Employee Availability API Error')
-        frappe.throw(_('An error occurred while fetching employee availability'))
+        frappe.log_error(frappe.get_traceback(), 'User Availability API Error')
+        frappe.throw(_('An error occurred while fetching user availability'))
 
-def get_employee_time_slots(employee_id, date):
+def get_user_time_slots(user_id, date):
     """
-    Get time slots for a specific employee on a given date
+    Get time slots for a specific user on a given date
     
     Args:
-        employee_id: Employee ID
+        user_id: User ID (email)
         date: Date object
     
     Returns:
         Dictionary with occupied and free time slots
     """
-    # Get work allocations for the employee on the specified date
+    # Get work allocations for the user on the specified date using custom_user field
     allocations = frappe.get_all('Daily Work Allocation',
         filters={
-            'employee_name': employee_id,
+            'custom_user': user_id,
             'date': date
         },
         fields=['name']
@@ -77,30 +96,24 @@ def get_employee_time_slots(employee_id, date):
             # Get the parent document
             parent_doc = frappe.get_doc('Daily Work Allocation', allocation['name'])
             
-            # Access the child table - try common field names for the child table
+            # Access the child table using the correct field name from your DocType
             work_items = []
             
-            # Try different possible field names for the child table
-            possible_fieldnames = ['work_allocation', 'work_items', 'items', 'allocations', 'work_details', 'work']
-            
-            for fieldname in possible_fieldnames:
-                if hasattr(parent_doc, fieldname) and parent_doc.get(fieldname):
-                    child_table = parent_doc.get(fieldname)
-                    for item in child_table:
-                        # Use the exact field names from the Work DocType
-                        start_time = item.get('expected_start_date')
-                        duration = item.get('expected_time_in_hours')
-                        
-                        if start_time and duration:
-                            work_items.append({
-                                'start_time': start_time,
-                                'duration_in_hours': duration
-                            })
+            # Use the custom_work_allocation field name from your DocType structure
+            if hasattr(parent_doc, 'custom_work_allocation') and parent_doc.get('custom_work_allocation'):
+                child_table = parent_doc.get('custom_work_allocation')
+                for item in child_table:
+                    # Use the exact field names from the Work DocType
+                    start_time = item.get('expected_start_date')
+                    duration = item.get('expected_time_in_hours')
                     
-                    if work_items:
-                        break
+                    if start_time and duration:
+                        work_items.append({
+                            'start_time': start_time,
+                            'duration_in_hours': duration
+                        })
             
-            # If still no work items found, try direct database query approach
+            # If no work items found in custom_work_allocation, try direct database query approach
             if not work_items:
                 # Get child table records directly from the Work DocType
                 work_records = frappe.get_all('Work',
@@ -311,14 +324,14 @@ def calculate_free_slots(occupied_slots, date):
 @frappe.whitelist()
 def get_employee_availability_summary(date, required_duration=None):
     """
-    Get a summary of employee availability with filtering options
+    Get a summary of user availability with filtering options
     
     Args:
         date: Date to check availability (YYYY-MM-DD format)
         required_duration: Minimum required free time in hours (optional)
     
     Returns:
-        Summary of available employees
+        Summary of available users
     """
     try:
         availability_data = get_employee_availability(date)
@@ -328,23 +341,23 @@ def get_employee_availability_summary(date, required_duration=None):
         
         summary = {
             'date': date,
-            'total_employees': len(availability_data['data']),
+            'total_users': len(availability_data['data']),
             'completely_free': [],
             'partially_free': [],
             'completely_occupied': []
         }
         
-        for emp_data in availability_data['data']:
-            availability = emp_data['availability']
+        for user_data in availability_data['data']:
+            availability = user_data['availability']
             
             if availability['is_completely_free']:
                 summary['completely_free'].append({
-                    'employee_id': emp_data['employee_id'],
-                    'employee_name': emp_data['employee_name'],
-                    'department': emp_data['department']
+                    'user_id': user_data['user_id'],
+                    'user_name': user_data['user_name'],
+                    'email': user_data['email']
                 })
             elif len(availability['free_slots']) > 0:
-                # Check if employee has required duration if specified
+                # Check if user has required duration if specified
                 has_required_duration = True
                 if required_duration:
                     max_free_duration = max([slot['duration_hours'] for slot in availability['free_slots']])
@@ -352,17 +365,17 @@ def get_employee_availability_summary(date, required_duration=None):
                 
                 if has_required_duration:
                     summary['partially_free'].append({
-                        'employee_id': emp_data['employee_id'],
-                        'employee_name': emp_data['employee_name'],
-                        'department': emp_data['department'],
+                        'user_id': user_data['user_id'],
+                        'user_name': user_data['user_name'],
+                        'email': user_data['email'],
                         'free_slots': availability['free_slots'],
                         'occupied_slots': availability['occupied_slots']
                     })
             else:
                 summary['completely_occupied'].append({
-                    'employee_id': emp_data['employee_id'],
-                    'employee_name': emp_data['employee_name'],
-                    'department': emp_data['department'],
+                    'user_id': user_data['user_id'],
+                    'user_name': user_data['user_name'],
+                    'email': user_data['email'],
                     'occupied_slots': availability['occupied_slots']
                 })
         
@@ -372,11 +385,11 @@ def get_employee_availability_summary(date, required_duration=None):
         return {
             'status': 'success',
             'data': summary,
-            'message': f'Employee availability summary for {date}'
+            'message': f'User availability summary for {date}'
         }
         
     except Exception as e:
-        frappe.log_error(frappe.get_traceback(), 'Employee Availability Summary API Error')
+        frappe.log_error(frappe.get_traceback(), 'User Availability Summary API Error')
         frappe.throw(_('An error occurred while generating availability summary'))
 
 # Additional debugging function to help identify the correct field names
