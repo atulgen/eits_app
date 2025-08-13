@@ -1325,7 +1325,7 @@
    "name": "Job Card -Veneer Pressing-custom_property_category",
    "no_copy": 0,
    "non_negative": 0,
-   "options": "property Category",
+   "options": "Category",
    "owner": "Administrator",
    "permlevel": 0,
    "placeholder": null,
