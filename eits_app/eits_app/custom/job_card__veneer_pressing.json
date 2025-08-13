@@ -1362,7 +1362,7 @@
    "dt": "Job Card -Veneer Pressing",
    "fetch_from": null,
    "fetch_if_empty": 0,
-   "fieldname": "custom_property_category",
+   "fieldname": "custom_property_type",
    "fieldtype": "Link",
    "hidden": 0,
    "hide_border": 0,
