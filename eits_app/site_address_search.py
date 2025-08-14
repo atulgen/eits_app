@@ -482,7 +482,7 @@ def universal_search(search_term):
             "custom_community": row.get('custom_community'),
             "custom_street_name": row.get('custom_street_name'),
             "custom_property_number": row.get('custom_property_number'),
-            "custom_property_category": row.get('custom_property_catogory'),
+            "custom_property_category": row.get('custom_property_category'),
             "custom_property_type": row.get('custom_property_type'),
             "custom_combined_address": row.get('custom_combined_address'),
             "custom_customer_phone_number": row.get('custom_customer_phone_number'),
