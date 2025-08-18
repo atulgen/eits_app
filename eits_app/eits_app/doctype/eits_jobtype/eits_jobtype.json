@@ -1,0 +1,48 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-08-16 12:18:19.177961",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "job_type",
+  "budget",
+  "urgency"
+ ],
+ "fields": [
+  {
+   "fieldname": "job_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Job Type",
+   "options": "JobType"
+  },
+  {
+   "fieldname": "budget",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Budget"
+  },
+  {
+   "fieldname": "urgency",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Urgency"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2025-08-16 12:30:28.786364",
+ "modified_by": "Administrator",
+ "module": "Eits App",
+ "name": "EITS JobType",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
