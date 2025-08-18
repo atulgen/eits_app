@@ -20,22 +20,24 @@
   },
   {
    "fieldname": "budget",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
-   "label": "Budget"
+   "label": "Budget",
+   "options": "AED 100 - AED 500\nAED 501 - AED 1000\nAED 1001 - AED 2000\nAED 2001 - AED 5000\nAED 5001 - AED 10000\nAED 10001 & more"
   },
   {
    "fieldname": "urgency",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Urgency"
+   "label": "Urgency",
+   "options": "ProjectUrgency"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2025-08-16 12:30:28.786364",
+ "modified": "2025-08-18 11:47:43.989524",
  "modified_by": "Administrator",
  "module": "Eits App",
  "name": "EITS JobType",
