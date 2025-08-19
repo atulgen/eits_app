@@ -199,13 +199,13 @@
   "doctype_event": "After Save",
   "enable_rate_limit": 0,
   "event_frequency": "All",
-  "modified": "2025-08-14 15:51:15.054900",
+  "modified": "2025-08-19 16:57:38.486557",
   "module": "Eits App",
   "name": "auto lead to site address",
   "rate_limit_count": 5,
   "rate_limit_seconds": 86400,
   "reference_doctype": "Lead",
-  "script": "if doc.custom_emirate and doc.custom_area and doc.custom_community:\r\n    siteaddress = frappe.get_doc({\r\n        \"doctype\": \"Site Address\",\r\n        \"custom_emirate\":doc.custom_emirate,\r\n        \"custom_area\":doc.custom_area,\r\n        \"custom_community\":doc.custom_community,\r\n        \"custom_street_name\":doc.custom_street_name,\r\n        \"custom_property_number\":doc.custom_property_name__number,\r\n        \"custom_lead_name\":doc.name,\r\n        \"custom_lead_phone_number\":doc.mobile_no,\r\n        \"custom_lead_email\":doc.email_id\r\n    })\r\n    siteaddress.insert()\r\n",
+  "script": "if doc.custom_emirate and doc.custom_area and doc.custom_community:\n    # Search for existing Site Address based on key fields\n    existing_siteaddress = frappe.db.exists(\"Site Address\", {\n        \"custom_emirate\": doc.custom_emirate,\n        \"custom_area\": doc.custom_area,\n        \"custom_community\": doc.custom_community,\n        \"custom_street_name\": doc.custom_street_name,\n        \"custom_property_number\": doc.custom_property_name__number,\n        \"custom_lead_name\": doc.name,\n        \"custom_lead_phone_number\": doc.mobile_no,\n        \"custom_lead_email\": doc.email_id\n    })\n    \n    if existing_siteaddress:\n        # Update existing Site Address\n        siteaddress = frappe.get_doc(\"Site Address\", existing_siteaddress)\n        siteaddress.custom_property_category = doc.custom_property_category\n        siteaddress.custom_property_type = doc.custom_property_type\n        siteaddress.custom_lead_name = doc.name\n        siteaddress.custom_lead_phone_number = doc.mobile_no\n        siteaddress.custom_lead_email = doc.email_id\n        siteaddress.save()\n    else:\n        # Create new Site Address\n        siteaddress = frappe.get_doc({\n            \"doctype\": \"Site Address\",\n            \"custom_emirate\": doc.custom_emirate,\n            \"custom_area\": doc.custom_area,\n            \"custom_community\": doc.custom_community,\n            \"custom_street_name\": doc.custom_street_name,\n            \"custom_property_number\": doc.custom_property_name__number,\n            \"custom_property_category\": doc.custom_property_category,\n            \"custom_property_type\": doc.custom_property_type,\n            \"custom_lead_name\": doc.name,\n            \"custom_lead_phone_number\": doc.mobile_no,\n            \"custom_lead_email\": doc.email_id\n        })\n        siteaddress.insert()",
   "script_type": "DocType Event"
  },
  {
