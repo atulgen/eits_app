@@ -1,14 +1,16 @@
+# In your custom app's api.py or hooks.py
 import frappe
 
 @frappe.whitelist()
-def get_user_roles(user=None):
-    """Get roles for current user or specified user"""
-    if not user:
-        user = frappe.session.user
+def get_user_with_roles(user_email):
+    # Add your own permission logic here
+    if not frappe.has_permission("User", "read"):
+        frappe.throw("Insufficient permissions")
     
-    # Check if current user can access other user's roles
-    if user != frappe.session.user and not frappe.has_permission("User", "read"):
-        frappe.throw("Not permitted to access other user's roles")
+    user_doc = frappe.get_doc("User", user_email)
     
-    roles = frappe.get_roles(user)
-    return roles
+    # Explicitly include roles
+    user_dict = user_doc.as_dict()
+    user_dict['roles'] = [role.role for role in user_doc.roles]
+    
+    return user_dict
