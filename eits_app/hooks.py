@@ -43,6 +43,10 @@ fixtures = [
         "dt": "Workspace",
         "filters": [["name", "in", ["EITS Account's WorkSpace"]]]
     },
+     {
+        "dt": "Workspace",
+        "filters": [["name", "in", ["EITS ACCOUNT"]]]
+    },
     {
         "dt": "Custom DocPerm",
         "filters": [["parent", "in", ["Payment", "Job Card -Other Services","Job Card -Veneer Pressing"]]]
