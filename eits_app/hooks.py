@@ -48,8 +48,7 @@ fixtures = [
         "filters": [["name", "in", ["EITS ACCOUNT"]]]
     },
     {
-        "dt": "Custom DocPerm",
-        "filters": [["parent", "in", ["Payment", "Job Card -Other Services","Job Card -Veneer Pressing"]]]
+        "dt": "Custom DocPerm"
     },
     "Server Script"
 ]
