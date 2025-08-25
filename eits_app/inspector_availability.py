@@ -259,7 +259,7 @@ def calculate_free_slots(occupied_slots, date):
     """
     # Define working hours (9:00 AM to 6:00 PM)
     shift_start = datetime.combine(date, time(9, 0))  # 9:00 AM
-    shift_end = datetime.combine(date, time(17, 45))   # 6:00 PM
+    shift_end = datetime.combine(date, time(18, 0))   # 6:00 PM
     
     free_slots = []
     
@@ -282,7 +282,7 @@ def calculate_free_slots(occupied_slots, date):
         # Completely free during work hours
         return [{
             'start': '09:00',
-            'end': '17:45',
+            'end': '18:00',
             'duration_hours': 9
         }]
     
