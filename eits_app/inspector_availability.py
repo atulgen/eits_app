@@ -282,7 +282,7 @@ def calculate_free_slots(occupied_slots, date):
         # Completely free during work hours
         return [{
             'start': '09:00',
-            'end': '18:00',
+            'end': '17:45',
             'duration_hours': 9
         }]
     
